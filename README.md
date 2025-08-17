@@ -53,15 +53,13 @@ OmniCharacter++’s large-scale dataset spans multi-party, topic-driven conversa
 ![dis](./dis.png)
 
 
-
-| Set | Dialogue Type | #Characters | Avg. Turn/Conv. | #Samples | #Speech Hours |
-|:---:|:------------:|:-----------:|:---------------:|:--------:|:------------:|
-| Train | Dyadic | 10,277 | 10.00 | 88,474 | 2867.94 |
-| Train | Multi-Character | 10,277 | 15.05 | 29,543 | 1051.66 |
-| Test  | Dyadic | 10 | 9.89 | 185 | 6.96 |
-| Test  | Multi-Character | 10 | 16.72 | 334 | 15.20 |
-
-
+| Set   | Dialogue Type  | #Characters | Avg. Turns/Conv. | #Dialogues | #Speech Hours |
+|-------|----------------|-------------|-----------------|------------|---------------|
+| Train | Dyadic         | 10,277      | 10.00           | 88,474     | 2867.94       |
+|       | Multi-Party    |             | 15.05           | 29,543     | 1051.66       |
+| Test  | Dyadic         | 10          | 9.89            | 185        | 6.96          |
+|       | Multi-Party    |             | 16.72           | 334        | 15.20         |
+| **Total** | -          | 10,377     | 12.92               | 118,536    | 3941.76       |
 
 
 ## 🧪 Evaluation Protocol of OmniCharacter++
