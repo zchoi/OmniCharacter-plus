@@ -47,10 +47,8 @@ pip install packaging ninja
 ninja --version; echo $?  # Verify Ninja --> should return exit code "0"
 pip install "flash-attn" --no-build-isolation
 ```
-## Dataset Details
-OmniCharacter++’s large-scale dataset spans multi-party, topic-driven conversations, expressive character role-playing, and text–speech co-driven interactions. It covers over 10K diverse characters from games, fiction, and public domains, engaging in 118K+ multi-turn dialogues with more than 1M synthesized audio responses that capture varied speaking styles and emotions. Together, these resources form a unified benchmark that comprehensively probes role consistency, contextual understanding, multimodal communication, and adaptive interaction in realistic open-world scenarios.
-
 ## 📊 Statistics of OmniCharacter++
+OmniCharacter++’s large-scale dataset spans multi-party, topic-driven conversations, expressive character role-playing, and text–speech co-driven interactions. It covers over 10K diverse characters from games, fiction, and public domains, engaging in 118K+ multi-turn dialogues with more than 1M synthesized audio responses that capture varied speaking styles and emotions. Together, these resources form a unified benchmark that comprehensively probes role consistency, contextual understanding, multimodal communication, and adaptive interaction in realistic open-world scenarios.
 
 | Set   | Dialogue Type  | #Characters | Avg. Turns/Conv. | #Dialogues | #Speech Hours |
 |-------|----------------|-------------|-----------------|------------|---------------|
@@ -61,3 +59,32 @@ OmniCharacter++’s large-scale dataset spans multi-party, topic-driven conversa
 | **Total** | -          | 10,377     | 12.92               | 118,536    | 3941.76       |
 
 ![dis](./dis.png)
+
+
+## 🧪 Evaluation Protocol of OmniCharacter++
+
+OmniCharacter++ evaluates multi-modal role-playing agents from three complementary perspectives:
+
+1. **Context Understanding** – Assess the model’s comprehension of dialogue context and character intent through role-related question answering (multi-choice) via [Circular Evaluation Strategy](https://github.com/open-compass/MMBench).
+2. **Generation Ability** – Evaluate textual response generation using four metrics: `Topic Following`, `Goal Success`, `Character Consistency`, `Dialogue Coherence`.
+3. **Human Perception** – Human experts rate the synthesized speech for naturalness and fidelity across six dimensions: `Fluency`, `Consistency`, `Emotional Expression`, `Clarity`, `Appropriateness`, `Immersion`.
+
+
+
+## 📜 Citation
+
+If you find **OmniCharacter++** useful, please cite:
+
+```bibtex
+@article{omnispatial25,
+  title   = {OmniCharacter++: Towards Comprehensive Benchmark for Realistic Role-Playing Agents},
+  author  = {Haonan Zhang},
+  journal = {arXiv preprint arXiv:XXXX},
+  year = {2025}
+}
+```
+
+## 📄 License
+
+* **Code** — MIT License
+* **Data** — CC BY-NC 4.0 (non-commercial research only)  
