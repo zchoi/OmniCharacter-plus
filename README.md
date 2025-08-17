@@ -49,4 +49,15 @@ pip install "flash-attn" --no-build-isolation
 ```
 ## Dataset Details
 OmniCharacter++’s large-scale dataset spans multi-party, topic-driven conversations, expressive character role-playing, and text–speech co-driven interactions. It covers over 10K diverse characters from games, fiction, and public domains, engaging in 118K+ multi-turn dialogues with more than 1M synthesized audio responses that capture varied speaking styles and emotions. Together, these resources form a unified benchmark that comprehensively probes role consistency, contextual understanding, multimodal communication, and adaptive interaction in realistic open-world scenarios.
+
+## 📊 Statistics of OmniCharacter++
+
+| Set   | Dialogue Type  | #Characters | Avg. Turns/Conv. | #Dialogues | #Speech Hours |
+|-------|----------------|-------------|-----------------|------------|---------------|
+| Train | Dyadic         | 10,277      | 10.00           | 88,474     | 2867.94       |
+|       | Multi-Party    |             | 15.05           | 29,543     | 1051.66       |
+| Test  | Dyadic         | 10          | 9.89            | 185        | 6.96          |
+|       | Multi-Party    |             | 16.72           | 334        | 15.20         |
+| **Total** | -          | 10,377     | 12.92               | 118,536    | 3941.76       |
+
 ![dis](./dis.png)
