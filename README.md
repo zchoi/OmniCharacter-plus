@@ -50,13 +50,37 @@ pip install "flash-attn" --no-build-isolation
 ## 📊 Statistics of OmniCharacter++
 OmniCharacter++’s large-scale dataset spans multi-party, topic-driven conversations, expressive character role-playing, and text–speech co-driven interactions. It covers over 10K diverse characters from games, fiction, and public domains, engaging in 118K+ multi-turn dialogues with more than 1M synthesized audio responses that capture varied speaking styles and emotions. Together, these resources form a unified benchmark that comprehensively probes role consistency, contextual understanding, multimodal communication, and adaptive interaction in realistic open-world scenarios.
 
-| Set   | Dialogue Type  | #Characters | Avg. Turns/Conv. | #Dialogues | #Speech Hours |
-|-------|----------------|-------------|-----------------|------------|---------------|
-| Train | Dyadic         | 10,277      | 10.00           | 88,474     | 2867.94       |
-|       | Multi-Party    |             | 15.05           | 29,543     | 1051.66       |
-| Test  | Dyadic         | 10          | 9.89            | 185        | 6.96          |
-|       | Multi-Party    |             | 16.72           | 334        | 15.20         |
-| **Total** | -          | 10,377     | 12.92               | 118,536    | 3941.76       |
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+
+<!-- 左侧表格 -->
+<div>
+<table>
+<thead>
+<tr>
+<th>Set</th>
+<th>Dialogue Type</th>
+<th>#Characters</th>
+<th>Avg. Turn/Conv.</th>
+<th>#Samples</th>
+<th>#Speech Hours</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Train</td><td>Dyadic</td><td>10,277</td><td>10.00</td><td>88,474</td><td>2867.94</td></tr>
+<tr><td>Train</td><td>Multi-Character</td><td>10,277</td><td>15.05</td><td>29,543</td><td>1051.66</td></tr>
+<tr><td>Test</td><td>Dyadic</td><td>10</td><td>9.89</td><td>185</td><td>6.96</td></tr>
+<tr><td>Test</td><td>Multi-Character</td><td>10</td><td>16.72</td><td>334</td><td>15.20</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- 右侧图片 -->
+<div>
+<img src="./len.png" width="300"/>
+</div>
+
+</div>
+
 
 ![dis](./dis.png)
 
