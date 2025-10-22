@@ -8,7 +8,7 @@
 
 > 🚀 This repository is continuously being updated, stay tuned for the latest progress!
 
-![intro](./intro.png)
+![intro](assets/intro.png)
 
 
 ## 🌟 Highlights of **OmniCharacter++**
@@ -52,7 +52,7 @@ pip install "flash-attn" --no-build-isolation
 ## 📊 Statistics of OmniCharacter++
 OmniCharacter++’s large-scale dataset spans multi-party, topic-driven conversations, expressive character role-playing, and text–speech co-driven interactions. It covers over 10K diverse characters from games, fiction, and public domains, engaging in 118K+ multi-turn dialogues with more than 1M synthesized audio responses that capture varied speaking styles and emotions. Together, these resources form a unified benchmark that comprehensively probes role consistency, contextual understanding, multimodal communication, and adaptive interaction in realistic open-world scenarios.
 
-![dis](./dis.png)
+![dis](assets/data_dis.png)
 
 
 | Set   | Dialogue Type  | #Characters | Avg. Turns/Conv. | #Dialogues | #Speech Hours |
