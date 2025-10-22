@@ -6,7 +6,7 @@
 [![Paper PDF](https://img.shields.io/badge/Paper-PDF-orange.svg)]()
 [![Hugging Face](https://img.shields.io/badge/🤗-Hugging_Face-yellow.svg)](https://huggingface.co/datasets/haonanzhang/OmniCharacter-plus)
 
-> 🚀 This repository is continuously being updated, stay tuned for the latest progress!
+> 🚀 This repository is continuously being updated. The model weights and datasets are currently under organization and internal review, and will be released once the process is complete. Stay tuned for the latest progress!
 
 ![intro](assets/intro.png)
 
