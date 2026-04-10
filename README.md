@@ -72,6 +72,21 @@ OmniCharacter++ evaluates multi-modal role-playing agents from three complementa
 2. **Generation Ability** – Evaluate textual response generation using four metrics: `Topic Following`, `Goal Success`, `Character Consistency`, `Dialogue Coherence`.
 3. **Human Perception** – Human experts rate the synthesized speech for naturalness and fidelity across six dimensions: `Fluency`, `Consistency`, `Emotional Expression`, `Clarity`, `Appropriateness`, `Immersion`.
 
+## 🏆 Experiments
+> 💡 **Note:** The analysis below represents just a few highlights. For a more comprehensive breakdown, interactive charts, and detailed findings, please visit our [Project Page-Analysis](https://video-mme-v2.netlify.app/#analysis).
+
+<p align="center">
+    <img src="Imgs/leadboard.png" width="100%">
+</p>
+
+> **Performance comparison with state-of-the-art models on OmniCharacter++ test set of dyadic dialogue (Context Understanding)**. The results are evaluated on the dyadic and multi-character conversation scenarios, under the setting of multi-choice QA. All models are tested based on the Circular Evaluation Strategy [36] for a more robust evaluation, alleviating the negative impact of noise and random prediction of models. Neg.: negotiation, Exc.: exchange, Free.: free-talk, Exp.: expert-domain, Inst.: instruction-giving, Per.: persuasion, Conf.: conflict-resolution, Pla: planning. The number in () indicates the ranks.
+
+<p align="center">
+    <img src="Imgs/leadboard.png" width="100%">
+</p>
+
+
+> **Performance comparison with state-of-the-art models on OmniCharacter++ test set of dyadic dialogue (Context Understanding)**. The results are evaluated on the dyadic and multi-character conversation scenarios, under the setting of multi-choice QA. All models are tested based on the Circular Evaluation Strategy [36] for a more robust evaluation, alleviating the negative impact of noise and random prediction of models. Neg.: negotiation, Exc.: exchange, Free.: free-talk, Exp.: expert-domain, Inst.: instruction-giving, Per.: persuasion, Conf.: conflict-resolution, Pla: planning. The number in () indicates the ranks.
 
 
 ## 📜 Citation
