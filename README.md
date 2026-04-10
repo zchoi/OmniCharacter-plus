@@ -95,12 +95,12 @@ For more experimental details, please refer to our paper.
 
 ## 🔍 Model
 
-Here are the pretrained weights and instruction tuning weights
+Here are the pretrained weights and training data.
 
-| Model            | Pretrained Projector | Base LLM  | PT Data                                                      | IT Data | Download |
-| ---------------- | -------------------- | --------- | ------------------------------------------------------------ | ------- | -------- |
-| MMEvol-Qwen2-7B  | [mm_projector](https://huggingface.co/Tongyi-ConvAI/MMEvol)     | Qwen2-7B  | [LLaVA-Pretrain](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) | MMEvol  | [ckpt](https://huggingface.co/Tongyi-ConvAI/MMEvol) |
-| MMEvol-LLaMA3-8B | [mm_projector](https://huggingface.co/Tongyi-ConvAI/MMEvol)     | LLaMA3-8B | [LLaVA-Pretrain](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) | MMEvol  | [ckpt](https://huggingface.co/Tongyi-ConvAI/MMEvol) |
+| Model            | Stage                     | Data Composition              | Audio Modality | Download |
+|------------------|--------------------------|-------------------------------|----------------|----------|
+| OmniCharacter++  | Stage1 (base LLM & Speech adapter)     | multi-character dialogues    |    ✗    | [ckpt](https://huggingface.co/haonanzhang/OmniCharacter-plus) |
+| OmniCharacter++  | Stage2 (SpeechLLM & EPO) | multi-character dialogues |   ✓   | [ckpt](https://huggingface.co/haonanzhang/OmniCharacter-plus) |
 
 
 ## 📜 Citation
