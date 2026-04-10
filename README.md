@@ -6,12 +6,15 @@
 [![Paper PDF](https://img.shields.io/badge/Paper-PDF-orange.svg)]()
 [![Hugging Face](https://img.shields.io/badge/🤗-Hugging_Face-yellow.svg)](https://huggingface.co/datasets/haonanzhang/OmniCharacter-plus)
 
-> 🚀 This repository is continuously being updated. The model weights and datasets are currently under organization and internal review, and will be released once the process is complete. Stay tuned for the latest progress!
 
-![intro](assets/intro.png)
+## 🔥 Update
+> [10/04/2026] 🔥 We release the [models](https://huggingface.co/haonanzhang/OmniCharacter-plus) and [data](https://huggingface.co/datasets/haonanzhang/OmniCharacter-plus) for OmniCharacter++!
+
+🚀 This repository is continuously being updated. The model weights and datasets are currently being organized and reviewed internally and will be released once the process is complete. Stay tuned for the latest progress!
 
 
 ## 🌟 Highlights of **OmniCharacter++**
+![intro](assets/intro.png)
 
 | Dimension                    | Example Features                                            | Scale               |
 | ---------------------------- | ----------------------------------------------------------- | ------------------- |
@@ -88,10 +91,21 @@ OmniCharacter++ evaluates multi-modal role-playing agents from three complementa
 
 > **Performance comparison with state-of-the-art models on OmniCharacter++ test set of multi-party dialogue (Context Understanding)**. The results are evaluated on the dyadic and multi-character conversation scenarios, under the setting of multi-choice QA. All models are tested based on the Circular Evaluation Strategy [36] for a more robust evaluation, alleviating the negative impact of noise and random prediction of models. Neg.: negotiation, Exc.: exchange, Free.: free-talk, Exp.: expert-domain, Inst.: instruction-giving, Per.: persuasion, Conf.: conflict-resolution, Pla: planning. The number in () indicates the ranks.
 
+For more experimental details, please refer to our paper.
+
+## 🔍 Model
+
+Here are the pretrained weights and instruction tuning weights
+
+| Model            | Pretrained Projector | Base LLM  | PT Data                                                      | IT Data | Download |
+| ---------------- | -------------------- | --------- | ------------------------------------------------------------ | ------- | -------- |
+| MMEvol-Qwen2-7B  | [mm_projector](https://huggingface.co/Tongyi-ConvAI/MMEvol)     | Qwen2-7B  | [LLaVA-Pretrain](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) | MMEvol  | [ckpt](https://huggingface.co/Tongyi-ConvAI/MMEvol) |
+| MMEvol-LLaMA3-8B | [mm_projector](https://huggingface.co/Tongyi-ConvAI/MMEvol)     | LLaMA3-8B | [LLaVA-Pretrain](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) | MMEvol  | [ckpt](https://huggingface.co/Tongyi-ConvAI/MMEvol) |
+
 
 ## 📜 Citation
 
-If you find **OmniCharacter++** useful, please cite:
+If you find our work helpful for your research, please consider citing our work.
 
 ```bibtex
 @article{omnispatial25,
@@ -100,7 +114,15 @@ If you find **OmniCharacter++** useful, please cite:
   journal = {arXiv preprint arXiv:XXXX},
   year = {2025}
 }
+@inproceedings{zhang2025omnicharacter,
+  title={Omnicharacter: Towards immersive role-playing agents with seamless speech-language personality interaction},
+  author={Zhang, Haonan and Luo, Run and Liu, Xiong and Wu, Yuchuan and Lin, Ting-En and Zeng, Pengpeng and Qu, Qiang and Fang, Feiteng and Yang, Min and Gao, Lianli and others},
+  booktitle={ACL (main)},
+  pages={26318--26331},
+  year={2025}
+}
 ```
+
 
 ## 📄 License
 
