@@ -86,7 +86,7 @@ OmniCharacter++ evaluates multi-modal role-playing agents from three complementa
 </p>
 
 
-> **Performance comparison with state-of-the-art models on OmniCharacter++ test set of dyadic dialogue (Context Understanding)**. The results are evaluated on the dyadic and multi-character conversation scenarios, under the setting of multi-choice QA. All models are tested based on the Circular Evaluation Strategy [36] for a more robust evaluation, alleviating the negative impact of noise and random prediction of models. Neg.: negotiation, Exc.: exchange, Free.: free-talk, Exp.: expert-domain, Inst.: instruction-giving, Per.: persuasion, Conf.: conflict-resolution, Pla: planning. The number in () indicates the ranks.
+> **Performance comparison with state-of-the-art models on OmniCharacter++ test set of multi-party dialogue (Context Understanding)**. The results are evaluated on the dyadic and multi-character conversation scenarios, under the setting of multi-choice QA. All models are tested based on the Circular Evaluation Strategy [36] for a more robust evaluation, alleviating the negative impact of noise and random prediction of models. Neg.: negotiation, Exc.: exchange, Free.: free-talk, Exp.: expert-domain, Inst.: instruction-giving, Per.: persuasion, Conf.: conflict-resolution, Pla: planning. The number in () indicates the ranks.
 
 
 ## 📜 Citation
