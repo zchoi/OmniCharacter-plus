@@ -108,7 +108,7 @@ Here are the pretrained weights and training data.
 If you find our work helpful for your research, please consider citing our work.
 
 ```bibtex
-@article{omnispatial25,
+@article{zhang2025omnicharacter++,
   title   = {OmniCharacter++: Towards Comprehensive Benchmark for Realistic Role-Playing Agents},
   author  = {Haonan Zhang},
   journal = {arXiv preprint arXiv:XXXX},
