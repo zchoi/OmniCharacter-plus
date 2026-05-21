@@ -108,11 +108,12 @@ Here are the pretrained weights and training data.
 If you find our work helpful for your research, please consider citing our work.
 
 ```bibtex
-@article{zhang2025omnicharacter++,
-  title   = {OmniCharacter++: Towards Comprehensive Benchmark for Realistic Role-Playing Agents},
-  author  = {Haonan Zhang},
-  journal = {arXiv preprint arXiv:XXXX},
-  year = {2025}
+@article{zhang2026omnicharacter++,
+  title={OmniCharacter++: Towards Comprehensive Benchmark for Realistic Role-Playing Agents},
+  author={Zhang, Haonan and Zeng, Pengpeng and Zhang, Ji and Song, Jingkuan and Sebe, Nicu and Shen, Heng Tao and Gao, Lianli},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2026},
+  publisher={IEEE}
 }
 @inproceedings{zhang2025omnicharacter,
   title={Omnicharacter: Towards immersive role-playing agents with seamless speech-language personality interaction},
