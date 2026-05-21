@@ -2,8 +2,8 @@
 > OmniCharacter++ evaluates the boundaries of today’s role-playing and character-aligned models on role-consistent multimodal interaction.
 > It benchmarks 8 diverse topics with 31 subfields, _e.g._, negotiation, exchange, daily life, covering 10k+ characters, 118K dialogue samples, and 1M speech annotations.
 
-[![Project Page](https://img.shields.io/badge/Project-Page-Green.svg)]()
-[![Paper PDF](https://img.shields.io/badge/Paper-PDF-orange.svg)]()
+[![Project Page](https://img.shields.io/badge/Project-Page-Green.svg)](https://zchoi.github.io/OmniCharacter-plus/)
+[![Paper PDF](https://img.shields.io/badge/Paper-PDF-orange.svg)](https://ieeexplore.ieee.org/abstract/document/11506238?casa_token=VQR1PcA3qjAAAAAA:INXRqxI_XAopWIijLyYjcYhhON94qX4cr4o_rqVBUx8lR3HKjGgZVJmak2uS4kgAAiPllSNeL17t)
 [![Hugging Face](https://img.shields.io/badge/🤗-Hugging_Face-yellow.svg)](https://huggingface.co/datasets/haonanzhang/OmniCharacter-plus)
 
 
