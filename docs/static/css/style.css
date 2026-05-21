@@ -1,0 +1,931 @@
+/* ========== Intro hero veil with FLIP-style morph ========== */
+/* Three states on <html>:
+     .intro-active   — veil visible, in-flow content hidden, scroll locked
+     .intro-fading   — JS has applied transforms; veil title is in transit
+                       toward the in-flow title; transition CSS drives the
+                       smooth animation
+     .intro-done     — morph finished; veil fades out and is removed.
+*/
+
+#intro-veil {
+  display: none;
+}
+html.intro-active #intro-veil,
+html.intro-fading #intro-veil,
+html.intro-done #intro-veil {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #ffffff;
+}
+
+/* Lock scroll while in intro / morphing. */
+html.intro-active,
+html.intro-active body,
+html.intro-fading,
+html.intro-fading body {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Hide in-flow content only during the resting intro. Once morphing starts, the
+   fixed white veil still covers the page, but the in-flow content is allowed to
+   paint behind it so the final veil fade does not trigger a one-frame redraw. */
+html.intro-active body > *:not(#intro-veil) {
+  visibility: hidden;
+}
+html.intro-fading body > *:not(#intro-veil),
+html.intro-done body > *:not(#intro-veil) {
+  visibility: visible;
+}
+
+#intro-veil {
+  --intro-title-h: clamp(180px, 24vh, 250px);
+  overflow: hidden;
+}
+@media (max-width: 900px) {
+  #intro-veil { --intro-title-h: 220px; }
+}
+@media (max-width: 600px) {
+  #intro-veil { --intro-title-h: 260px; }
+}
+@media (min-width: 701px) and (max-height: 620px) {
+  #intro-veil { --intro-title-h: 170px; }
+}
+
+/* Bar — visual element at the top (white bg + thin bottom border). On scroll
+   the bar fades out while the title morphs down into the in-flow hero. */
+#intro-veil .intro-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--intro-title-h);
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e7;
+}
+
+/* Title — centered inside its own positioned area so we can transform freely.
+   It shares width, font metrics, and wrapping rules with .paper-title so the
+   morph remains a pure translate with no scale or line-break shift. */
+#intro-veil .intro-title-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: var(--intro-title-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 1.25rem;
+  pointer-events: none;
+  z-index: 2;
+}
+.paper-title,
+#intro-veil .intro-title {
+  margin: 0;
+  text-align: center;
+  font-family: 'Noto Serif', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: 0;
+  line-height: 1.2;
+  color: var(--fg);
+  width: var(--paper-title-width);
+  max-width: 900px;
+  min-width: 0;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+#intro-veil .intro-title {
+  animation: introFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s both;
+  transform-origin: center center;
+  will-change: transform;
+}
+#intro-veil .intro-title sub {
+  font-size: 0.7em;
+  vertical-align: -0.2em;
+}
+#intro-veil .intro-title sup {
+  font-size: 0.7em;
+  vertical-align: 0.5em;
+}
+@media (max-width: 700px) {
+  .paper-title,
+  #intro-veil .intro-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Opening video wall — shown only in the intro veil. It fades with the veil;
+   only the title participates in the FLIP morph. */
+#intro-veil .intro-video-area {
+  --intro-video-pad-x: 0.75rem;
+  --intro-video-pad-top: 0.75rem;
+  --intro-video-pad-bottom: 2.1rem;
+  --intro-video-gap: 0.75rem;
+  position: absolute;
+  top: var(--intro-title-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--intro-video-pad-top) var(--intro-video-pad-x) var(--intro-video-pad-bottom);
+}
+#intro-veil .intro-video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--intro-video-gap);
+  width: min(
+    100%,
+    calc(
+      (100vh - var(--intro-title-h) - var(--intro-video-pad-top) - var(--intro-video-pad-bottom) - var(--intro-video-gap))
+      * 16 / 9 + var(--intro-video-gap)
+    )
+  );
+  height: auto;
+}
+#intro-veil .intro-video-grid video {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  animation: introFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@media (max-height: 850px) {
+  #intro-veil .intro-video-area {
+    --intro-video-gap: 0.55rem;
+  }
+}
+@media (max-width: 700px) {
+  #intro-veil .intro-video-area {
+    --intro-video-pad-x: 0.5rem;
+    --intro-video-pad-top: 0.5rem;
+    --intro-video-pad-bottom: 2rem;
+    --intro-video-gap: 0.5rem;
+  }
+}
+
+/* Subtle scroll hint at the very bottom. */
+#intro-veil .intro-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  color: #888;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  animation: introBounce 1.8s ease-in-out infinite,
+             introFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.32s both;
+  transition: opacity 0.3s ease;
+}
+
+/* During morph: title transition gets enabled (target transform comes from
+   inline styles set by JS). Hint fades out independently. */
+html.intro-fading #intro-veil .intro-title {
+  animation: none;
+  transition: transform 0.95s cubic-bezier(0.32, 0, 0.13, 1);
+}
+html.intro-fading #intro-veil .intro-bar,
+html.intro-fading #intro-veil .intro-video-area,
+html.intro-fading #intro-veil .intro-hint {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+html.intro-done #intro-veil .intro-bar,
+html.intro-done #intro-veil .intro-video-area,
+html.intro-done #intro-veil .intro-hint {
+  opacity: 0;
+  visibility: hidden;
+  transition: none;
+}
+
+/* When morph is complete, fade the whole veil so the in-flow content takes over
+   seamlessly (the veil's title is at the in-flow position already). */
+html.intro-done #intro-veil {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+@keyframes introFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes introBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50%      { transform: translateY(4px); opacity: 1; }
+}
+
+/* ========== Reset & base ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --fg: #1a1a1a;
+  --fg-muted: #555;
+  --bg: #ffffff;
+  --bg-alt: #f7f7f8;
+  --border: #e5e5e7;
+  --accent: #b11f3a;        /* paper red */
+  --accent-soft: #fde4e9;
+  --accent-blue: #2f5f8f;   /* paper blue */
+  --max-width: 1100px;
+  --narrow-width: 820px;
+  --paper-title-width: min(900px, calc(100vw - 2.5rem));
+  --radius: 8px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover {
+  color: #8a1a2e;
+  text-decoration: underline;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Noto Serif', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--fg);
+  margin: 0 0 0.5em;
+}
+
+h2 {
+  font-size: 1.95rem;
+  text-align: center;
+  margin-bottom: 1.4em;
+}
+
+h3.subhead {
+  font-size: 1.25rem;
+  margin: 1.6em 0 0.6em;
+  color: var(--fg);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  background: var(--bg-alt);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+
+em {
+  color: var(--fg);
+}
+
+/* ========== Layout ========== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+.container.narrow {
+  max-width: var(--narrow-width);
+}
+
+.section {
+  padding: 4rem 0;
+  border-top: 1px solid var(--border);
+}
+.section.alt {
+  background: var(--bg-alt);
+}
+
+/* ========== Teaser at the very top ========== */
+.teaser-top {
+  padding: 1.75rem 0 0.5rem;
+  background: #fff;
+}
+.teaser {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.teaser img {
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+}
+.teaser figcaption {
+  margin-top: 0.5rem;
+  max-width: 780px;
+}
+
+/* ========== Hero (title + authors) ========== */
+.hero {
+  padding: 1rem 0 3rem;
+  text-align: center;
+  border-top: none;
+}
+
+.paper-title {
+  font-size: 2.2rem;
+  margin: 0 auto 1.1rem;
+  max-width: 900px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+.paper-title sub {
+  font-size: 0.7em;
+  vertical-align: -0.2em;
+}
+.paper-title sup {
+  font-size: 0.7em;
+  vertical-align: 0.5em;
+}
+.method-name {
+  color: var(--accent);
+}
+
+/* KaTeX inline math should match surrounding text size and weight, and \text{}
+   should inherit the page's font (Noto Serif / Inter) instead of KaTeX_Main.
+   KaTeX's own CSS uses `font:` shorthand which forces font-weight to normal —
+   we override so <h1>, <strong>, etc. carry through to LaST. */
+.katex {
+  font-size: 1em;
+  font-weight: inherit;
+}
+.katex .text,
+.katex .mord.text {
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.authors {
+  margin: 0.5rem 0 0.75rem;
+  font-size: 1.05rem;
+}
+.author {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+.author a {
+  color: var(--fg);
+  border-bottom: 1px dashed transparent;
+}
+.author a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  text-decoration: none;
+}
+
+.affiliations,
+.notes {
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+.affiliations span,
+.notes span {
+  display: inline-block;
+  margin: 0 0.6em;
+}
+.notes {
+  font-size: 0.85rem;
+  margin-bottom: 1.6rem;
+}
+
+/* ========== Buttons ========== */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  background: var(--fg);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+.btn:hover {
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.btn-disabled {
+  cursor: not-allowed;
+}
+.btn-disabled:hover {
+  transform: none;
+}
+.btn-disabled::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.6rem);
+  transform: translateX(-50%) translateY(0.2rem);
+  padding: 0.35rem 0.55rem;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+.btn-disabled::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.25rem);
+  transform: translateX(-50%) translateY(0.2rem);
+  border: 0.35rem solid transparent;
+  border-top-color: #222;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+.btn-disabled:hover::after,
+.btn-disabled:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.btn.small {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+}
+.btn i {
+  font-style: normal;
+  font-size: 0.95em;
+}
+
+/* ========== Stat callouts ========== */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 0 auto 2.8rem;
+  max-width: 1000px;
+}
+.stat {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1rem;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+.stat-num {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-unit {
+  font-size: 0.55em;
+  color: var(--fg-muted);
+  font-weight: 500;
+  margin-left: 0.1em;
+}
+.stat-label {
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--fg-muted);
+  line-height: 1.4;
+}
+.stat.stat-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stat.stat-text .stat-num {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.55rem;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.stat.stat-text .stat-label {
+  max-width: 14rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.stat-label strong {
+  color: var(--fg-muted);
+  font-weight: 700;
+}
+
+/* ========== Figures & captions ========== */
+figure {
+  margin: 1.5rem 0;
+}
+figure img,
+figure video {
+  width: 100%;
+  border-radius: var(--radius);
+  background: #fff;
+}
+figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--fg-muted);
+  text-align: center;
+  line-height: 1.55;
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lead {
+  text-align: center;
+  color: var(--fg-muted);
+  margin: 0 auto 1.6rem;
+  max-width: 780px;
+}
+
+.caption-lead {
+  text-align: center;
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+  margin: 0 auto 1rem;
+}
+.caption-note {
+  text-align: center;
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+  margin: 0.6rem auto 0;
+}
+.ours {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ========== Tables ========== */
+.table-wrap {
+  overflow-x: auto;
+  margin: 0.5rem auto 1rem;
+  max-width: 1000px;
+}
+.table-wrap.small {
+  max-width: 800px;
+}
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.results-table thead th {
+  background: #2a2a2a;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 0.9rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.results-table thead th:first-child {
+  text-align: left;
+}
+.results-table tbody td {
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.results-table tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+.results-table tbody tr:hover {
+  background: var(--bg-alt);
+}
+.results-table tr.sep td {
+  padding: 0;
+  height: 4px;
+  border-bottom: 2px solid #2a2a2a;
+}
+.results-table tr.ours-row {
+  background: var(--accent-soft);
+}
+.results-table tr.ours-row td {
+  font-weight: 600;
+}
+.results-table tr.ours-row:hover {
+  background: var(--accent-soft);
+}
+.results-table tr.task-header td {
+  background: #2a2a2a;
+  color: #fff;
+  text-align: left;
+  font-size: 0.9rem;
+  padding: 0.55rem 0.9rem;
+}
+.results-table tr.task-header:hover td {
+  background: #2a2a2a;
+}
+.placeholder {
+  color: #b8b8b8;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Real-world tables — light unified palette: Methods cell + task-pair headers
+   share a slightly darker tint (#f1f1f4); perturbation labels are a lighter
+   tint (#fafafb); data rows are white; LaST-R1 stays pink. The 2px black
+   vertical bar between task pairs mirrors the `|` from LaTeX `lcccc|cccc`. */
+.real-world-table {
+  margin-bottom: 1rem;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+.real-world-table thead th {
+  background: #fafafb;
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--border);
+}
+.real-world-table .task-pair-head {
+  background: #f1f1f4;
+  color: var(--fg);
+  font-weight: 700;
+  font-size: 0.97rem;
+  letter-spacing: 0;
+  padding: 0.7rem 0.9rem;
+}
+.real-world-table thead th[rowspan] {
+  background: #f1f1f4;
+  color: var(--fg);
+  border-right: 2px solid #4a4a4a;     /* anchor the Methods column */
+  font-weight: 700;
+  width: 13rem;
+}
+/* The "|" separator from `lcccc|cccc` */
+.real-world-table .pair-left-border {
+  border-left: 2px solid #4a4a4a;
+}
+.real-world-table tbody td:first-child {
+  background: #fafafb;
+  font-weight: 500;
+  border-right: 2px solid #4a4a4a;     /* continues the Methods anchor down */
+  text-align: left;
+  padding-left: 0.9rem;
+}
+.real-world-table tr.ours-row {
+  background: var(--accent-soft);
+}
+.real-world-table tr.ours-row td:first-child {
+  background: #f9d8de;
+  color: var(--fg);
+}
+.real-world-table tr.ours-row:hover {
+  background: var(--accent-soft);
+}
+/* Relative drop annotations next to OOD numbers, e.g. "75 (-15%)" */
+.real-world-table .drop {
+  color: var(--fg-muted);
+  font-size: 0.78em;
+  font-weight: 400;
+  margin-left: 0.15em;
+}
+.real-world-table tr.ours-row .drop {
+  /* Slightly muted on the highlighted row too, but keep some weight */
+  color: #6b3a45;
+}
+.real-world-table .warmup {
+  color: var(--fg-muted);
+  font-weight: 500;
+  margin-right: 0.08em;
+}
+
+/* ========== Video grid (real-world rollouts) ========== */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 0.4rem 0 0.5rem;
+}
+.video-grid.one {
+  /* Solo "Original Rollout" gets a wider single slot, capped */
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
+}
+.video-grid figure {
+  margin: 0;
+}
+.video-grid video {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #1f2937;
+  width: 100%;
+}
+.video-grid figcaption {
+  font-size: 0.88rem;
+  margin-top: 0.4rem;
+}
+.task-block {
+  margin: 2rem 0 0;
+  padding-top: 1.6rem;
+  border-top: 1px dashed var(--border);
+}
+.task-block:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.task-block h3 {
+  text-align: left;
+  font-size: 1.2rem;
+  margin: 0 0 0.4rem;
+}
+.task-block .task-tag {
+  display: inline-block;
+  margin-left: 0.6em;
+  padding: 0.15em 0.55em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  vertical-align: 0.18em;
+}
+.task-block .task-meta {
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  margin: 0 0 0.6rem;
+}
+.task-block .row-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 1.2rem 0 0.5rem;
+}
+
+/* ========== Highlight callout (used after learning curves) ========== */
+.callout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem auto 0;
+  max-width: 900px;
+}
+.callout {
+  background: #fff;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.callout .callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+}
+.callout .callout-title i {
+  font-size: 1.1em;
+}
+.callout p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--fg);
+  line-height: 1.55;
+}
+
+/* ========== Formulas (KaTeX display math) ========== */
+.formula {
+  margin: 1.2rem 0;
+  padding: 0.6rem 0;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.formula .katex-display {
+  margin: 0;
+}
+.formula .katex {
+  font-size: 1.1em;
+}
+
+/* ========== BibTeX ========== */
+pre {
+  background: #0f1115;
+  color: #e6edf3;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0 0 0.75rem;
+}
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ========== Footer ========== */
+footer {
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  text-align: center;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 700px) {
+  .paper-title {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  .section {
+    padding: 3rem 0;
+  }
+  .teaser-top {
+    padding: 1.5rem 0 0.5rem;
+  }
+  .hero {
+    padding: 1rem 0 2rem;
+  }
+  body {
+    font-size: 16px;
+  }
+  .stat-num {
+    font-size: 2.1rem;
+  }
+  .results-table {
+    font-size: 0.82rem;
+  }
+  .results-table thead th,
+  .results-table tbody td {
+    padding: 0.5rem 0.55rem;
+  }
+}

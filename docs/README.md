@@ -1,102 +1,145 @@
-<div align="center">
+# LaST-R1 — Project Page
 
-# LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning
+Static project page for **LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning**. Plain HTML / CSS / vanilla JS, no build step, hosted on GitHub Pages.
 
-<a href="https://siriyep.github.io/last-r1/"><img src="https://img.shields.io/static/v1?label=Project&message=Page&color=blue&logo=github&style=for-the-badge"></a> &ensp;
-<a href="https://arxiv.org/pdf/2604.28192"><img src="https://img.shields.io/static/v1?label=Arxiv&message=Paper&color=red&logo=arxiv&style=for-the-badge"></a> &ensp;
-<a href="https://huggingface.co/chenhao01/LaST-R1/tree/main"><img src="https://img.shields.io/static/v1?label=Models&message=LaST-R1&color=yellow&logo=huggingface&style=for-the-badge"></a> &ensp;
+🔗 **Live**: <https://siriyep.github.io/last-r1/>
 
-Hao Chen, Jiaming Liu, Zhonghao Yan, Nuowei Han, Renrui Zhang, Chenyang Gu, Jialin Gao, Ziyu Guo, Siyuan Qian, Yinxi Wang, Peng Jia, Shanghang Zhang, Pheng-Ann Heng
+## 页面内容
 
-![](asset/method.jpg)
+```
+Teaser  ─►  Title + Buttons  ─►  Headline Results (Sim)  ─►  Real-World  ─►  Abstract  ─►  BibTeX
+```
 
-<div align="left">
+页面直接呈现论文主图、核心仿真实验、真机表格和已剪辑视频；措辞按论文正文和表格收紧，避免把分数扩展成更强的结论。
 
-**🤖The Framework of LaST-R1.** (a) LaST-R1 VLA is a unified model that takes visual observations and language instructions as input, where a vision foundation model provides physically grounded latent targets to guide latent CoT reasoning before action generation. (b) During LAPO RL post-training, LaST-R1 interacts with the environment in a closed loop manner, storing latents, actions, and rewards in a rollout buffer for jointly reshaping the latent and action spaces. It further enables adaptive reasoning by learning to emit the `<latent_end>` token based on predicted probabilities, dynamically adjusting the reasoning horizon across tasks. (c) Through LAPO, LaST-R1 achieves adaptive reasoning lengths across diverse tasks, improving generalization and execution stability.
+| 段落 | 内容 |
+|------|------|
+| **Hero intro** | 进页面瞬间全屏显示标题 + 2×2 真机视频墙，第一次滚动触发 FLIP morph 动画把标题滑到正文位置；hash 直链（`#bibtex` 等）和 `prefers-reduced-motion` 用户跳过此动画 |
+| **Teaser** | 论文 Figure 1 (`teaser.png`) |
+| **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`LaST-R1` 用 Cornell 红高亮；Paper / Code / Models / Videos / BibTeX 可点击 |
+| **Headline Results** | 4 张数字卡（**99.9%** LIBERO / **+22.5%** real-world over SOTA SFT / **1 traj** warm-up / sim+real generalization）+ 完整 LIBERO 12 行对比表（`tab:libero_comparison`）+ 最新学习曲线图（`main_results.png`）+ generalization 图（`main_ablation_gen.png`）+ 三联 callout |
+| **Real-World** | 论文 Table 2 真机成功率（`π0.5` Full-size SFT vs. LaST-R1 Few-shot SFT→RL）+ `video-edited` 里的 16 段真机视频 |
+| **Abstract** | 论文 abstract 原文 |
+| **BibTeX** | 引用块 + 一键复制按钮 |
 
-</div>
+## 目录结构
 
-</div>
+```
+.
+├── index.html                          # 整个页面（约 730 行）
+├── README.md
+├── .gitignore
+├── .nojekyll                           # 让 GitHub Pages 跳过 Jekyll
+└── static/
+    ├── css/style.css                   # 所有样式
+    ├── js/main.js                      # intro morph 逻辑 + BibTeX 复制
+    ├── videos/                         # 真机视频，来自 ref/video-edited
+    │   ├── hexagon_*.mp4               # 4 段：original + 3 OOD
+    │   ├── zipper_*.mp4                # 4 段
+    │   ├── vase_*.mp4                  # 4 段
+    │   └── bottle_*.mp4                # 4 段
+    └── images/
+        ├── teaser.png                  # 用：teaser + 社交分享 OG image
+        ├── main_results.png            # 用：学习曲线
+        └── main_ablation_gen.png       # 用：LIBERO generalization 图
+```
 
-## 🔥 News
+## 论文实验数据
 
-- [2026/05/06] LaST-R1 is now live on arXiv! The code and model checkpoints for both simulation SFT and RL are publicly available! 🚀 
+### LIBERO Benchmark（仿真）
+| Suite | LaST-R1 | π_RL（次优） |
+|-------|---------|--------------|
+| Spatial | **99.8** | 99.6 |
+| Object | **100.0** | 100.0 |
+| Goal | **100.0** | 99.6 |
+| Long | **99.8** | 94.0 |
+| **Average** | **99.9** | 98.3 |
 
-## 📦 Installation
+### Real-World 真机（4 任务，SOTA SFT vs Few-shot SFT→RL，含 OOD 三列）
 
-The code is built using Python 3.10, we also recommand to use Python above Python 3.10. We require PyTorch >= 2.2.0 and CUDA >= 12.0 (It may run with lower versions, but we have not tested it).
-We recommend using [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and create an environment as follows:
+每任务格式：`Original / Unseen-Object / -Background / -Lighting`
+
+| Task | π0.5 Full-size SFT | LaST-R1 Few-shot SFT→RL |
+|------|--------------------|--------------------------|
+| Insert hexagon block (single) | 65 / 35 / 55 / 40 | **45→90 / 75 / 85 / 80** |
+| Open bag zipper (dual) | 75 / 30 / 70 / 60 | **55→95 / 80 / 95 / 90** |
+| Wipe vase with sponge (dual) | 75 / 45 / 65 / 50 | **65→95 / 80 / 90 / 95** |
+| Open bottle cap (dual) | 70 / 50 / 55 / 55 | **45→95 / 95 / 80 / 85** |
+| **Original 列平均** | 71.25 | **52.5→93.75** |
+
+## 本地预览
 
 ```bash
-conda create -n last-r1 python=3.10 -y
-conda activate last-r1
-
-pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
-pip install -r requirements.txt
-
-# Clone veRL (recommended to place at the same level as LaST-R1, not inside the LaST-R1 folder)
-git clone -b v0.2.x https://github.com/volcengine/verl.git
-cd /path/to/verl
-# Replace the installed pyproject.toml file with our custom ./setup/pyproject.toml file.
-pip install -e .
-
-# Clone LIBERO (recommended to place at the same level as LaST-R1, not inside the LaST-R1 folder)
-git clone https://github.com/Lifelong-Robot-Learning/LIBERO.git
-cd /path/to/LIBERO
-pip install -e .
+python3 -m http.server 8000
+# 打开 http://localhost:8000
 ```
 
-## 🧩 Framework
+## 待正式发布后补
 
-Our code is built based on [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL) and [veRL](https://github.com/verl-project/verl), organized in the following framework:
+| 位置 | 替换什么 |
+|------|---------|
+| `#bibtex` 内 `<pre><code>` 块 | Google Scholar BibTeX 条目 |
 
-- `verl/trainer/main_ppo.py`: LAPO training entry point that initializes the trainer and launches the training pipeline
-- `verl/trainer/config/ppo_trainer.yaml`: default LAPO training configuration (data, optimization, rollout, logging, and runtime settings)
-- `verl/trainer/ppo/ray_trainer.py`: coordinates distributed training, including rollout, reward/advantage computation, and actor updates
-- `verl/trainer/ppo/core_algos.py`: core LAPO utilities and algorithm logic used by the trainer (e.g., advantage/return and policy optimization helpers)
-- `verl/workers/rollout/rob_rollout.py`: handles environment interaction, trajectory collection, and action generation during rollout
-- `verl/workers/fsdp_workers.py`: defines FSDP-based worker abstractions for distributed model execution and training/inference worker behaviors
-- `verl/workers/actor/dp_rob.py`: actor-side training logic, including loss computation, value prediction, and policy updates
-- `verl/workers/actor/action_tokenizer.py`: converts continuous robot actions to discrete tokens and back
-- `transformers/models/qwen3_vl/modeling_qwen3_vl.py`: core Qwen3-VL model implementation, including latent/action modeling and value head integration
-- `transformers/integrations/sdpa_attention.py`: SDPA attention integration and attention-mask related logic
+## 真机视频
 
-We would like to thank [SimpleVLA-RL](https://github.com/PRIME-RL/SimpleVLA-RL) 🥳, upon which our repo is built.
+页面现在使用 `ref/video-edited/` 里的 16 段已剪辑视频，HTML 里 hardcode 了部署文件名（**不要改名**）。
 
-## 💡 Usage
-### 🔍 Warmup SFT Model and Post-RL Models
-
-We release all LIBERO warmup SFT models and post-RL models on [Huggingface 🤗](https://huggingface.co/) as follows:
-- [last-r1-warmup-libero_spatial-oneshot](https://huggingface.co/chenhao01/LaST-R1/tree/main/LaST-R1-Warmup/last-r1-warmup-libero_spatial-oneshot) | [last-r1-rl-libero_spatial](https://huggingface.co/chenhao01/LaST-R1/tree/main/LaST-R1-RL/last-r1-rl-libero_spatial)
-- [last-r1-warmup-libero_object-oneshot](https://huggingface.co/chenhao01/LaST-R1/tree/main/LaST-R1-Warmup/last-r1-warmup-libero_object-oneshot) | [last-r1-rl-libero_object](https://huggingface.co/chenhao01/LaST-R1/tree/main/LaST-R1-RL/last-r1-rl-libero_object)
-- [last-r1-warmup-libero_goal-oneshot](https://huggingface.co/chenhao01/LaST-R1/tree/main/LaST-R1-Warmup/last-r1-warmup-libero_goal-oneshot) | [last-r1-rl-libero_goal](https://huggingface.co/chenhao01/LaST-R1/tree/main/LaST-R1-RL/last-r1-rl-libero_goal)
-- [last-r1-warmup-libero_10-oneshot](https://huggingface.co/chenhao01/LaST-R1/tree/main/LaST-R1-Warmup/last-r1-warmup-libero_10-oneshot) | [last-r1-rl-libero_10](https://huggingface.co/chenhao01/LaST-R1/tree/main/LaST-R1-RL/last-r1-rl-libero_10)
-
-
-### 🔍 Training and Evaluation on LIBERO
-1. The main training and evaluation script is `scripts/run_libero_rl_training.sh`. When editing this script, please pay attention to:
-    - `SFT_MODEL_PATH` (warm-up model checkpoint path), `DATA_STATUS` (dataset statistics `.json` used for action normalization), and `ALIGN_PATH` (runtime environment `align.json` config) must be valid paths.
-    - `VAL_ONLY` controls train/eval mode: set `VAL_ONLY=False` for training and `VAL_ONLY=True` for evaluation.
-    - `DATASET_NAME` should match your benchmark split (`libero_spatial`, `libero_object`, `libero_goal`, or `libero_10`), and related parameters (e.g., `max_prompt_length`, `traj_mini_batch_size`, and `*_max_steps`) should be updated consistently.
-    - `NUM_GPUS` affects several effective batch settings (e.g., `actor.ppo_micro_batch_size=$NUM_GPUS` and recommended `val_batch_size`); if you change GPU count, adjust batch sizes accordingly to avoid OOM or shape mismatches.
-
-2. Hardware-specific initialization note: in `verl/workers/rollout/rob_rollout.py`, function `env_worker(...)` (around lines 315-316), we apply `initial_state[12] += 0.038` for `libero_spatial` task 5 to avoid environment initialization failure observed on NVIDIA H20 machines. If your hardware does not show this issue, you may remove this workaround based on your setup.
-
-
-3. We evaluate **LaST-R1** on [LIBERO](https://libero-project.github.io/main.html) and achieve state-of-the-art performance.
-
-![](asset/libero.jpg)
-
-## 📜️ License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📚 BibTeX
-```bibtex
-@article{chen2026last,
-  title   = {LaST-R1: Reinforcing Action via Adaptive Physical Latent Reasoning for VLA Models},
-  author  = {Chen, Hao and Liu, Jiaming and Yan, Zhonghao and Han, Nuowei and Zhang, Renrui and Gu, Chenyang and Gao, Jialin and Guo, Ziyu and Qian, Siyuan and Wang, Yinxi and others},
-  journal = {arXiv preprint arXiv:2604.28192},
-  year    = {2026}
-}
+| 任务 | 槽位 | 文件名 |
+|------|------|--------|
+| **Insert hexagon block** (single-arm) | Original | `static/videos/hexagon_original.mp4` |
+| | Unseen-Object | `static/videos/hexagon_object.mp4` |
+| | Unseen-Background | `static/videos/hexagon_background.mp4` |
+| | Unseen-Lighting | `static/videos/hexagon_lighting.mp4` |
+| **Open bag zipper** (dual-arm) | Original | `static/videos/zipper_original.mp4` |
+| | Unseen-Object | `static/videos/zipper_object.mp4` |
+| | Unseen-Background | `static/videos/zipper_background.mp4` |
+| | Unseen-Lighting | `static/videos/zipper_lighting.mp4` |
+| **Wipe vase with sponge** (dual-arm) | Original | `static/videos/vase_original.mp4` |
+| | Unseen-Object | `static/videos/vase_object.mp4` |
+| | Unseen-Background | `static/videos/vase_background.mp4` |
+| | Unseen-Lighting | `static/videos/vase_lighting.mp4` |
+| **Open bottle cap** (dual-arm) | Original | `static/videos/bottle_original.mp4` |
+| | Unseen-Object | `static/videos/bottle_object.mp4` |
+| | Unseen-Background | `static/videos/bottle_background.mp4` |
+| | Unseen-Lighting | `static/videos/bottle_lighting.mp4` |
+**视频建议规格**：H.264 / 720p+ / 16:9 / 单文件 < 15 MB。压缩命令（需 `ffmpeg`）：
+```bash
+ffmpeg -i in.mp4 -vcodec libx264 -crf 28 -preset slow -an out.mp4
 ```
+
+GitHub 单文件 100 MB 上限，仓库总大小 1 GB 上限。
+
+## 自定义
+
+### 主题色
+
+`static/css/style.css` 顶部 `:root`：
+
+```css
+--accent: #b11f3a;        /* Cornell 红 — 标题 LaST-R1 / LaST-R1 表格行 / callout 边线 */
+--accent-blue: #2f5f8f;   /* baseline 蓝 — 学习曲线注释 */
+```
+
+### Intro 动画时长
+
+`static/js/main.js` 顶部：
+
+```js
+var MORPH_MS = 950;   // 标题 / 图片 morph 持续时间
+var FADE_MS  = 350;   // morph 完成后 veil 整体淡出时间
+```
+
+### 跳过 intro
+
+加 `?` 后的任意 `#hash`（比如 `#bibtex`），或在系统设置里打开"减少动效"。也可以注释掉 `<head>` 里加 `intro-active` class 的那段 `<script>`。
+
+## Tech notes
+
+- **KaTeX** via CDN（jsdelivr）：所有 `$...$` / `$$...$$` 自动渲染。当前页面 KaTeX 主要用于公式，CDN 保留以备将来使用。
+- **Font Awesome 6** via CDN：所有按钮图标
+- **Google Fonts** Inter (sans) + Noto Serif (标题)
+- **Intro morph**：FLIP 思路，JS 同步 veil 标题和 in-flow 标题的排版 metrics，再加 `translate(dx,dy)` → CSS `transition: transform 0.95s` 驱动平滑变换 → veil 淡出。开场 2×2 视频墙只在 veil 中展示，不参与 morph。
+
+## 致谢
+
+布局借鉴 [Nerfies](https://github.com/nerfies/nerfies.github.io)、[ManualVLA](https://sites.google.com/view/maunalvla/) 和 [LaST₀](https://vla-last0.github.io/)。
