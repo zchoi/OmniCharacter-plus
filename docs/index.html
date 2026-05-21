@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning</title>
+  <title>OmniCharacter++: Towards Comprehensive Benchmark for Realistic Role-Playing Agents</title>
   <meta
     name="description"
-    content="LaST-R1: An RL post-training framework for latent reasoning-before-acting policies in robotic manipulation."
+    content="OmniCharacter++: A comprehensive benchmark for realistic role-playing agents in multi-character, multimodal interaction."
   />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="LaST-R1: Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning" />
+  <meta property="og:title" content="OmniCharacter++: Towards Comprehensive Benchmark for Realistic Role-Playing Agents" />
   <meta
     property="og:description"
-    content="A latent reasoning-before-acting RL framework with LAPO. 99.9% average success on LIBERO and +22.5% average improvement over SOTA SFT in real-world deployment."
+    content="A comprehensive benchmark for evaluating realistic role-playing agents across multi-character, text-speech interaction settings."
   />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="static/images/teaser.png" />
@@ -51,116 +51,45 @@
   ></script>
 
   <link rel="stylesheet" href="static/css/style.css" />
-
-  <!-- Intro hero gate. Sets `intro-active` on <html> before body renders so the
-       hero veil shows immediately, with no FOUC. Skipped on deep-link (#hash) or
-       if the user prefers reduced motion. -->
-  <script>
-    (function () {
-      var deepLink = !!window.location.hash;
-      var reduced = window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!deepLink && !reduced) {
-        document.documentElement.classList.add('intro-active');
-      }
-    })();
-  </script>
 </head>
 <body>
-  <!-- Hero intro veil. Shown only when <html> has .intro-active. On first scroll
-       the title morphs into the in-flow paper title, then the veil fades out. -->
-  <div id="intro-veil" aria-label="Welcome">
-    <div class="intro-bar"></div>
-    <div class="intro-title-area">
-      <h1 class="intro-title">
-        <span class="method-name">LaST-R1</span>:
-        Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning
-      </h1>
-    </div>
-    <div class="intro-video-area" aria-label="Representative real-world rollouts">
-      <div class="intro-video-grid">
-        <video autoplay muted loop playsinline preload="auto"
-               poster="static/videos/bottle_original.jpg">
-          <source src="static/videos/bottle_original.mp4" type="video/mp4" />
-        </video>
-        <video autoplay muted loop playsinline preload="auto"
-               poster="static/videos/vase_original.jpg">
-          <source src="static/videos/vase_original.mp4" type="video/mp4" />
-        </video>
-        <video autoplay muted loop playsinline preload="auto"
-               poster="static/videos/hexagon_lighting.jpg">
-          <source src="static/videos/hexagon_lighting.mp4" type="video/mp4" />
-        </video>
-        <video autoplay muted loop playsinline preload="auto"
-               poster="static/videos/zipper_background.jpg">
-          <source src="static/videos/zipper_background.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </div>
-    <p class="intro-hint" aria-hidden="true">scroll&nbsp;&nbsp;↓</p>
-  </div>
-
-  <!-- ===========================  1) TEASER (top of page)  =========================== -->
-  <section class="teaser-top">
-    <div class="container">
-      <figure class="teaser">
-        <img src="static/images/teaser.png" alt="LaST-R1 teaser figure" />
-        <figcaption>
-          <strong>The Overview of LaST-R1.</strong> (a) Unlike vanilla RL baselines
-          that strictly optimize actions, (b) our approach utilizes LAPO to jointly
-          optimize an adaptive latent CoT alongside physical execution. By bridging
-          cognitive reasoning and control, LaST-R1 achieves (c) faster convergence
-          speed, higher success rate in simulation, and (d) stronger generalization
-          capabilities in real-world.
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ===========================  2) TITLE + AUTHORS  =========================== -->
+  <!-- ===========================  1) TITLE + AUTHORS  =========================== -->
   <header class="hero">
     <div class="container">
       <h1 class="paper-title">
-        <span class="method-name">LaST-R1</span>:
-        Reinforcing Robotic Manipulation via Adaptive Physical Latent Reasoning
+        <span class="method-name">OmniCharacter++</span>:
+        Towards Comprehensive Benchmark for Realistic Role-Playing Agents
       </h1>
 
       <div class="authors">
-        <span class="author">Hao Chen<sup>1,2*</sup></span>
-        <span class="author">Jiaming Liu<sup>2*†</sup></span>
-        <span class="author">Zhonghao Yan<sup>2*</sup></span>
-        <span class="author">Nuowei Han<sup>2*</sup></span>
-        <span class="author">Renrui Zhang<sup>1†</sup></span>
-        <span class="author">Chenyang Gu<sup>2</sup></span>
-        <span class="author">Jialin Gao<sup>1</sup></span>
-        <span class="author">Ziyu Guo<sup>1</sup></span>
-        <span class="author">Siyuan Qian<sup>2</sup></span>
-        <span class="author">Yinxi Wang<sup>2</sup></span>
-        <span class="author">Peng Jia<sup>3</sup></span>
-        <span class="author">Shanghang Zhang<sup>2✉</sup></span>
-        <span class="author">Pheng-Ann Heng<sup>1</sup></span>
+        <span class="author">Haonan Zhang<sup>1</sup></span>
+        <span class="author">Pengpeng Zeng<sup>2✉</sup></span>
+        <span class="author">Ji Zhang<sup>3</sup></span>
+        <span class="author">Jingkuan Song<sup>2</sup></span>
+        <span class="author">Nicu Sebe<sup>4</sup></span>
+        <span class="author">Heng Tao Shen<sup>2</sup></span>
+        <span class="author">Lianli Gao<sup>1</sup></span>
       </div>
 
       <div class="affiliations">
-        <span><sup>1</sup>The Chinese University of Hong Kong</span>
-        <span><sup>2</sup>State Key Laboratory of Multimedia Information Processing, School of Computer Science, Peking University</span>
-        <span><sup>3</sup>Simplexity Robotics</span>
+        <span><sup>1</sup>University of Electronic Science and Technology of China</span>
+        <span><sup>2</sup>Tongji University</span>
+        <span><sup>3</sup>Southwest Jiaotong University</span>
+        <span><sup>4</sup>University of Trento</span>
       </div>
 
       <div class="notes">
-        <span><sup>*</sup>Equal contribution</span>
-        <span><sup>†</sup>Project lead</span>
         <span><sup>✉</sup>Corresponding author</span>
       </div>
 
       <div class="action-buttons">
-        <a class="btn" href="https://arxiv.org/abs/2604.28192" target="_blank" rel="noopener noreferrer">
+        <a class="btn" href="https://doi.org/10.1109/TPAMI.2026.3690447" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-file-pdf"></i><span>Paper</span>
         </a>
-        <a class="btn" href="https://github.com/CHEN-H01/LaST-R1" target="_blank" rel="noopener noreferrer">
+        <a class="btn" href="https://github.com/zchoi/OmniCharacter-plus" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-github"></i><span>Code</span>
         </a>
-        <a class="btn" href="https://huggingface.co/chenhao01/LaST-R1/tree/main" target="_blank" rel="noopener noreferrer">
+        <a class="btn" href="https://huggingface.co/haonanzhang/OmniCharacter-plus" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-cubes"></i><span>Models</span>
         </a>
         <a class="btn" href="#real-world">
@@ -173,7 +102,7 @@
     </div>
   </header>
 
-  <!-- ===========================  3) HEADLINE RESULTS  =========================== -->
+  <!-- ===========================  2) HEADLINE RESULTS  =========================== -->
   <section class="section" id="results">
     <div class="container">
       <h2>Headline Results</h2>
@@ -181,176 +110,182 @@
       <!-- Big-number callouts -->
       <div class="stat-grid">
         <div class="stat">
-          <div class="stat-num">99.9<span class="stat-unit">%</span></div>
-          <div class="stat-label">Average success rate on LIBERO<br />(new state-of-the-art)</div>
+          <div class="stat-num">10K<span class="stat-unit">+</span></div>
+          <div class="stat-label">Character profiles across games, fiction, and public domains</div>
         </div>
         <div class="stat">
-          <div class="stat-num">+22.5<span class="stat-unit">%</span></div>
-          <div class="stat-label">Average improvement over SOTA full-size SFT</div>
+          <div class="stat-num">118K<span class="stat-unit">+</span></div>
+          <div class="stat-label">Dyadic and multi-party role-playing dialogues</div>
         </div>
         <div class="stat">
-          <div class="stat-num">1<span class="stat-unit"> traj.</span></div>
-          <div class="stat-label">Single expert trajectory per task for warm-up</div>
+          <div class="stat-num">1M<span class="stat-unit">+</span></div>
+          <div class="stat-label">Synthesized speech responses with varied styles and emotions</div>
         </div>
-        <div class="stat stat-text">
-          <div class="stat-num">Generalization</div>
+        <div class="stat">
+          <div class="stat-num">3,941.76<span class="stat-unit"> h</span></div>
           <div class="stat-label">
-            evaluated in simulation (<strong>Sim</strong>) and physical
-            (<strong>Real</strong>) deployment
+            Total speech duration for text-speech driven interaction
           </div>
         </div>
       </div>
 
-      <!-- LIBERO comparison table -->
-      <h3 class="subhead">LIBERO Benchmark — Comparison with SFT and RL Baselines</h3>
+      <h3 class="subhead">OmniCharacter++ Benchmark — Dataset Scale</h3>
       <p class="caption-lead">
-        Success Rate (%) across four task suites. <strong>Bold</strong> marks the best
-        per column; <span class="ours">our method</span> ranks #1 on every suite.
+        OmniCharacter++ covers large-scale role profiles, topic-driven
+        conversations, and expressive speech responses. It is designed to probe
+        role consistency, contextual understanding, multimodal communication,
+        and adaptive interaction in realistic open-world scenarios.
       </p>
       <div class="table-wrap">
         <table class="results-table">
           <thead>
             <tr>
-              <th>Model</th>
-              <th>Paradigm</th>
-              <th>Spatial</th>
-              <th>Object</th>
-              <th>Goal</th>
-              <th>Long</th>
-              <th>Average</th>
+              <th>Set</th>
+              <th>Dialogue Type</th>
+              <th>#Characters</th>
+              <th>Avg. Turns/Conv.</th>
+              <th>#Dialogues</th>
+              <th>#Speech Hours</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>OpenVLA</td><td>SFT</td>
-              <td>84.7</td><td>88.4</td><td>79.2</td><td>53.7</td><td>76.5</td>
+              <td>Train</td>
+              <td>Dyadic</td>
+              <td>10,277</td>
+              <td>10.00</td>
+              <td>88,474</td>
+              <td>2867.94</td>
             </tr>
             <tr>
-              <td>GR00T-N1</td><td>SFT</td>
-              <td>94.4</td><td>97.6</td><td>93.0</td><td>90.6</td><td>93.9</td>
+              <td>Train</td>
+              <td>Multi-Party</td>
+              <td>10,277</td>
+              <td>15.05</td>
+              <td>29,543</td>
+              <td>1051.66</td>
             </tr>
             <tr>
-              <td>π<sub>0</sub></td><td>SFT</td>
-              <td>96.8</td><td>98.8</td><td>95.8</td><td>85.2</td><td>94.2</td>
+              <td>Test</td>
+              <td>Dyadic</td>
+              <td>10</td>
+              <td>9.89</td>
+              <td>185</td>
+              <td>6.96</td>
             </tr>
             <tr>
-              <td>π<sub>0.5</sub></td><td>SFT</td>
-              <td>98.8</td><td>98.2</td><td>98.0</td><td>92.4</td><td>96.9</td>
-            </tr>
-            <tr>
-              <td>OpenVLA-OFT</td><td>SFT</td>
-              <td>97.6</td><td>98.4</td><td>97.9</td><td>94.5</td><td>97.1</td>
-            </tr>
-            <tr class="sep"><td colspan="7"></td></tr>
-            <tr>
-              <td>GRAPE<sup>†</sup></td><td>RL</td>
-              <td>88.5</td><td>92.1</td><td>83.1</td><td>57.2</td><td>80.2</td>
-            </tr>
-            <tr>
-              <td>TGRPO<sup>†</sup></td><td>RL</td>
-              <td>90.4</td><td>92.2</td><td>81.0</td><td>59.2</td><td>80.7</td>
-            </tr>
-            <tr>
-              <td>VLA-RL<sup>†</sup></td><td>RL</td>
-              <td>90.2</td><td>91.8</td><td>82.2</td><td>59.8</td><td>81.0</td>
-            </tr>
-            <tr>
-              <td>SimpleVLA-RL</td><td>RL</td>
-              <td>98.2</td><td>98.7</td><td>98.8</td><td>91.7</td><td>96.9</td>
-            </tr>
-            <tr>
-              <td>RLinf-GRPO</td><td>RL</td>
-              <td>98.9</td><td>99.7</td><td>98.3</td><td>93.6</td><td>97.6</td>
-            </tr>
-            <tr>
-              <td>π<sub>RL</sub><sup>‡</sup></td><td>RL</td>
-              <td>99.6</td><td><strong>100.0</strong></td><td>99.6</td><td>94.0</td><td>98.3</td>
+              <td>Test</td>
+              <td>Multi-Party</td>
+              <td>10</td>
+              <td>16.72</td>
+              <td>334</td>
+              <td>15.20</td>
             </tr>
             <tr class="ours-row">
-              <td>LaST-R1 (Ours)</td>
-              <td>RL</td>
-              <td><strong>99.8</strong></td>
-              <td><strong>100.0</strong></td>
-              <td><strong>100.0</strong></td>
-              <td><strong>99.8</strong></td>
-              <td><strong>99.9</strong></td>
+              <td><strong>Total</strong></td>
+              <td>-</td>
+              <td><strong>10,377</strong></td>
+              <td><strong>12.92</strong></td>
+              <td><strong>118,536</strong></td>
+              <td><strong>3941.76</strong></td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="caption-note">
-        <sup>†</sup>full-trajectory warm-up &nbsp;&middot;&nbsp;
-        <sup>‡</sup>two-camera-view training &nbsp;&middot;&nbsp; others use
-        single-trajectory, single-view data, matching our setting.
-      </p>
 
-      <!-- Learning-curve figure -->
       <figure>
-        <img src="static/images/main_results.png" alt="Online RL learning curves on LIBERO" />
+        <img src="static/images/intro.png" alt="Overview of the OmniCharacter++ benchmark" />
         <figcaption>
-          <strong>One-shot Online RL learning curves on LIBERO.</strong>
-          LaST-R1+LAPO
-          (<span style="color:var(--accent);font-weight:600">red</span>) vs. the
-          standard Action-Only+PPO baseline
-          (<span style="color:var(--accent-blue);font-weight:600">blue</span>) across
-          all four task suites.
+          <strong>Overview of OmniCharacter++.</strong>
+          The benchmark moves beyond text-only and dyadic-only role-playing
+          evaluation by combining rich role profiles, multi-role dialogues,
+          vivid speech, goal-oriented scenarios, and multi-level evaluation.
         </figcaption>
       </figure>
 
-      <!-- Two-axis improvement callout -->
-      <div class="callout-grid">
-        <div class="callout">
-          <div class="callout-title">
-            <i class="fas fa-bolt"></i><span>Faster Convergence</span>
-          </div>
-          <p>
-            LaST-R1 trained with LAPO achieves faster convergence and higher
-            success rates than Action-Only+PPO across the four LIBERO suites.
-            The paper attributes this sample efficiency to latent CoT
-            optimization: environmental rewards shape both reasoning embeddings
-            and action sequences, smoothing online RL instead of updating only
-            physical actions.
-          </p>
-        </div>
-        <div class="callout">
-          <div class="callout-title">
-            <i class="fas fa-arrow-up"></i><span>Higher Final Accuracy</span>
-          </div>
-          <p>
-            At convergence, LaST-R1+LAPO ranks first across Spatial, Object,
-            Goal, and Long in the LIBERO comparison table, reaching a 99.9%
-            average success rate. The paper highlights the Long suite as the
-            clearest gap, reporting 99.8% for LaST-R1 and 94.0% for
-            &pi;<sub>RL</sub>, consistent with stronger long-horizon
-            manipulation.
-          </p>
-        </div>
-        <div class="callout">
-          <div class="callout-title">
-            <i class="fas fa-globe"></i><span>Stronger Generalization</span>
-          </div>
-          <p>
-            LaST-R1 achieves zero-shot generalization to unseen objects,
-            backgrounds, and lighting conditions after RL post-training. The
-            paper reports that LaST-R1 confines real-world performance drops
-            to within 15% for novel objects and remains robust under background
-            and lighting variation.
-          </p>
-        </div>
+      <div class="figure-grid">
+        <figure>
+          <img src="static/images/data_dis.png" alt="OmniCharacter++ topic and scenario distribution" />
+          <figcaption>
+            <strong>Topic and scenario coverage.</strong>
+            OmniCharacter++ spans daily life, planning, negotiation,
+            instruction-giving, free-talk, expert domains, conflict resolution,
+            and other realistic role-playing settings.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="static/images/len.png" alt="OmniCharacter++ dialogue length and audio duration distribution" />
+          <figcaption>
+            <strong>Dialogue and speech distribution.</strong>
+            The dataset includes multi-turn conversations and speech responses
+            with varied audio durations for evaluating text-speech interaction.
+          </figcaption>
+        </figure>
       </div>
+
+      <h3 class="subhead">Context Understanding — Multi-Choice Evaluation</h3>
       <p class="caption-note">
-        These trends follow the paper's result analysis: latent CoT optimization
-        smooths the RL optimization landscape and enables sample-efficient online
-        learning. Appendix analyses further examine adaptive reasoning lengths
-        and optimized execution episode lengths.
+        Models are evaluated on dyadic and multi-party dialogue scenarios using
+        role-related multi-choice QA with circular evaluation. OmniCharacter-7B
+        is highlighted as the role-playing model trained on OmniCharacter++
+        data, and the tables compare it against proprietary, open-source,
+        reasoning, and role-playing baselines.
       </p>
 
       <figure>
-        <img src="static/images/main_ablation_gen.png" alt="Generalization analysis on LIBERO" />
+        <img src="static/images/dyadic_conv.png" alt="Dyadic dialogue context understanding results" />
         <figcaption>
-          <strong>Generalization analysis on LIBERO.</strong>
-          While Action-Only+PPO stagnates on held-out tasks, LaST-R1 with LAPO
-          demonstrates continuous OOD improvement.
+          <strong>Dyadic dialogue context understanding.</strong>
+          OmniCharacter-7B reaches the best average score among role-playing
+          models and ranks competitively across negotiation, exchange,
+          free-talk, expert-domain, instruction-giving, persuasion, conflict
+          resolution, and planning categories.
+        </figcaption>
+      </figure>
+
+      <div class="callout-grid">
+        <div class="callout">
+          <div class="callout-title">
+            <i class="fas fa-users"></i><span>Dyadic + Multi-Party</span>
+          </div>
+          <p>
+            The benchmark evaluates both one-to-one role-playing and
+            multi-character conversations. This stresses context tracking,
+            speaker intent, goal progress, and relationship consistency across
+            longer, more realistic interactions.
+          </p>
+        </div>
+        <div class="callout">
+          <div class="callout-title">
+            <i class="fas fa-volume-high"></i><span>Text-Speech Interaction</span>
+          </div>
+          <p>
+            OmniCharacter++ pairs role profiles and dialogues with synthesized
+            speech responses, enabling evaluation beyond text-only behavior:
+            fluency, consistency, emotional expression, clarity,
+            appropriateness, and immersion.
+          </p>
+        </div>
+        <div class="callout">
+          <div class="callout-title">
+            <i class="fas fa-bullseye"></i><span>Goal-Oriented Roles</span>
+          </div>
+          <p>
+            Scenarios are built around concrete topics and goals, so models
+            must balance persona consistency with task progress, dialogue
+            coherence, and realistic role-specific decisions.
+          </p>
+        </div>
+      </div>
+
+      <figure>
+        <img src="static/images/multi_conv.png" alt="Multi-party dialogue context understanding results" />
+        <figcaption>
+          <strong>Multi-party dialogue context understanding.</strong>
+          The multi-party split increases the burden on role tracking and
+          context aggregation, exposing performance gaps between general
+          chat models and role-playing agents trained for character-grounded
+          interaction.
         </figcaption>
       </figure>
     </div>
@@ -676,10 +611,11 @@
   <section class="section" id="bibtex">
     <div class="container narrow">
       <h2>BibTeX</h2>
-      <pre><code>@article{chen2026last,
-  title={LaST-R1: Reinforcing Action via Adaptive Physical Latent Reasoning for VLA Models},
-  author={Chen, Hao and Liu, Jiaming and Yan, Zhonghao and Han, Nuowei and Zhang, Renrui and Gu, Chenyang and Gao, Jialin and Guo, Ziyu and Qian, Siyuan and Wang, Yinxi and others},
-  journal={arXiv preprint arXiv:2604.28192},
+      <pre><code>@article{zhang2026omnicharacterpp,
+  title={OmniCharacter++: Towards Comprehensive Benchmark for Realistic Role-Playing Agents},
+  author={Zhang, Haonan and Zeng, Pengpeng and Zhang, Ji and Song, Jingkuan and Sebe, Nicu and Shen, Heng Tao and Gao, Lianli},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  doi={10.1109/TPAMI.2026.3690447},
   year={2026}
 }</code></pre>
       <button id="copy-bibtex" class="btn small">
