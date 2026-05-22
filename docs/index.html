@@ -92,8 +92,8 @@
         <a class="btn" href="https://huggingface.co/haonanzhang/OmniCharacter-plus" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-cubes"></i><span>Models</span>
         </a>
-        <a class="btn" href="#real-world">
-          <i class="fas fa-video"></i><span>Videos</span>
+        <a class="btn" href="#framework">
+          <i class="fas fa-diagram-project"></i><span>Framework</span>
         </a>
         <a class="btn" href="#bibtex">
           <i class="fas fa-quote-right"></i><span>BibTeX</span>
@@ -281,278 +281,27 @@
     </div>
   </section>
 
-  <!-- ===========================  4) REAL-WORLD EXPERIMENTS  =========================== -->
-  <section class="section" id="real-world">
+  <!-- ===========================  4) MODEL FRAMEWORK  =========================== -->
+  <section class="section" id="framework">
     <div class="container">
-      <h2>Real-World Experiments</h2>
+      <h2>Model Framework</h2>
       <p class="lead">
-        We deploy LaST-R1 on Franka Research 3 hardware across four manipulation
-        tasks — one single-arm and three dual-arm: <em>Insert hexagon block</em>,
-        <em>Open bag zipper</em>, <em>Wipe vase with sponge</em>, and
-        <em>Open bottle cap</em>. LaST-R1 uses a few-shot SFT warm-up with
-        <strong>30 expert trajectories</strong> followed by LoRA-based online RL,
-        and is compared with the SOTA VLA model &pi;<sub>0.5</sub> trained by
-        full-size SFT on <strong>100 expert trajectories</strong>. All policies are
-        evaluated over <strong>20 rollouts at varied positions</strong> under
-        original and OOD settings.
+        OmniCharacter++ builds a speech-language collaborative model for
+        realistic role-playing agents. The framework aligns character profiles,
+        dialogue context, text queries, and speech queries, then adapts the
+        response through role-aware speech decoding, emotion preference learning,
+        and role-contextual dialogue adaptation.
       </p>
 
-      <h3 class="subhead">Success Rate (%) — SOTA SFT vs. Few-shot SFT→RL</h3>
-      <p class="caption-lead">
-        Numbers in parentheses show the drop from each method's
-        <em>Original</em> result under OOD perturbations.
-        LaST-R1 improves average <em>Original</em> success from
-        <strong>52.5%</strong> after warm-up to <strong>93.75%</strong> after RL,
-        surpassing &pi;<sub>0.5</sub> at <strong>71.25%</strong>.
-      </p>
-
-      <!-- ===== Sub-table 1: hexagon | zipper ===== -->
-      <div class="table-wrap">
-        <table class="results-table real-world-table">
-          <thead>
-            <tr>
-              <th rowspan="2">Methods</th>
-              <th colspan="4" class="task-pair-head">Insert hexagon block</th>
-              <th colspan="4" class="task-pair-head pair-left-border">Open bag zipper</th>
-            </tr>
-            <tr>
-              <th>Original</th><th>Unseen-Object</th><th>-Background</th><th>-Lighting</th>
-              <th class="pair-left-border">Original</th><th>Unseen-Object</th><th>-Background</th><th>-Lighting</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>&pi;<sub>0.5</sub> (Full-size SFT)</td>
-              <td>65</td>
-              <td>35 <span class="drop">(-30%)</span></td>
-              <td>55 <span class="drop">(-10%)</span></td>
-              <td>40 <span class="drop">(-25%)</span></td>
-              <td class="pair-left-border">75</td>
-              <td>30 <span class="drop">(-45%)</span></td>
-              <td>70 <span class="drop">(-5%)</span></td>
-              <td>60 <span class="drop">(-15%)</span></td>
-            </tr>
-            <tr class="ours-row">
-              <td>LaST-R1 (Few-shot SFT→RL)</td>
-              <td><span class="warmup">45→</span><strong>90</strong></td>
-              <td><strong>75</strong> <span class="drop">(-15%)</span></td>
-              <td><strong>85</strong> <span class="drop">(-5%)</span></td>
-              <td><strong>80</strong> <span class="drop">(-10%)</span></td>
-              <td class="pair-left-border"><span class="warmup">55→</span><strong>95</strong></td>
-              <td><strong>80</strong> <span class="drop">(-15%)</span></td>
-              <td><strong>95</strong> <span class="drop">(-0%)</span></td>
-              <td><strong>90</strong> <span class="drop">(-5%)</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- ===== Sub-table 2: vase | bottle cap ===== -->
-      <div class="table-wrap">
-        <table class="results-table real-world-table">
-          <thead>
-            <tr>
-              <th rowspan="2">Methods</th>
-              <th colspan="4" class="task-pair-head">Wipe vase with sponge</th>
-              <th colspan="4" class="task-pair-head pair-left-border">Open bottle cap</th>
-            </tr>
-            <tr>
-              <th>Original</th><th>Unseen-Object</th><th>-Background</th><th>-Lighting</th>
-              <th class="pair-left-border">Original</th><th>Unseen-Object</th><th>-Background</th><th>-Lighting</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>&pi;<sub>0.5</sub> (Full-size SFT)</td>
-              <td>75</td>
-              <td>45 <span class="drop">(-30%)</span></td>
-              <td>65 <span class="drop">(-10%)</span></td>
-              <td>50 <span class="drop">(-25%)</span></td>
-              <td class="pair-left-border">70</td>
-              <td>50 <span class="drop">(-20%)</span></td>
-              <td>55 <span class="drop">(-15%)</span></td>
-              <td>55 <span class="drop">(-15%)</span></td>
-            </tr>
-            <tr class="ours-row">
-              <td>LaST-R1 (Few-shot SFT→RL)</td>
-              <td><span class="warmup">65→</span><strong>95</strong></td>
-              <td><strong>80</strong> <span class="drop">(-15%)</span></td>
-              <td><strong>90</strong> <span class="drop">(-5%)</span></td>
-              <td><strong>95</strong> <span class="drop">(-0%)</span></td>
-              <td class="pair-left-border"><span class="warmup">45→</span><strong>95</strong></td>
-              <td><strong>95</strong> <span class="drop">(-0%)</span></td>
-              <td><strong>80</strong> <span class="drop">(-15%)</span></td>
-              <td><strong>85</strong> <span class="drop">(-10%)</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="caption-note">
-        Each cell averages 20 independent rollouts at varied tabletop positions.
-        The standard deviation over three independent runs is 1.25% for LaST-R1
-        after RL and 4.5% for &pi;<sub>0.5</sub>.
-      </p>
-
-      <!-- =====================================================
-           VIDEO BLOCKS — edited rollouts from ref/video-edited.
-           ===================================================== -->
-
-      <!-- Task 1: Open bottle cap (dual-arm) -->
-      <div class="task-block">
-        <h3>Open Bottle Cap <span class="task-tag">dual-arm</span></h3>
-        <span class="row-label">Original Rollout</span>
-        <div class="video-grid one">
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/bottle_original.jpg">
-              <source src="static/videos/bottle_original.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Original setting</figcaption>
-          </figure>
-        </div>
-        <span class="row-label">Generalization (Object · Background · Lighting)</span>
-        <div class="video-grid">
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/bottle_object.jpg">
-              <source src="static/videos/bottle_object.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen object</figcaption>
-          </figure>
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/bottle_background.jpg">
-              <source src="static/videos/bottle_background.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen background</figcaption>
-          </figure>
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/bottle_lighting.jpg">
-              <source src="static/videos/bottle_lighting.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen lighting</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <!-- Task 2: Open bag zipper (dual-arm) -->
-      <div class="task-block">
-        <h3>Open Bag Zipper <span class="task-tag">dual-arm</span></h3>
-        <span class="row-label">Original Rollout</span>
-        <div class="video-grid one">
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/zipper_original.jpg">
-              <source src="static/videos/zipper_original.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Original setting</figcaption>
-          </figure>
-        </div>
-        <span class="row-label">Generalization (Object · Background · Lighting)</span>
-        <div class="video-grid">
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/zipper_object.jpg">
-              <source src="static/videos/zipper_object.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen object</figcaption>
-          </figure>
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/zipper_background.jpg">
-              <source src="static/videos/zipper_background.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen background</figcaption>
-          </figure>
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/zipper_lighting.jpg">
-              <source src="static/videos/zipper_lighting.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen lighting</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <!-- Task 3: Wipe vase with sponge (dual-arm) -->
-      <div class="task-block">
-        <h3>Wipe Vase with Sponge <span class="task-tag">dual-arm</span></h3>
-        <span class="row-label">Original Rollout</span>
-        <div class="video-grid one">
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/vase_original.jpg">
-              <source src="static/videos/vase_original.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Original setting</figcaption>
-          </figure>
-        </div>
-        <span class="row-label">Generalization (Object · Background · Lighting)</span>
-        <div class="video-grid">
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/vase_object.jpg">
-              <source src="static/videos/vase_object.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen object</figcaption>
-          </figure>
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/vase_background.jpg">
-              <source src="static/videos/vase_background.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen background</figcaption>
-          </figure>
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/vase_lighting.jpg">
-              <source src="static/videos/vase_lighting.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen lighting</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <!-- Task 4: Insert hexagon block (single-arm) -->
-      <div class="task-block">
-        <h3>Insert Hexagon Block <span class="task-tag">single-arm</span></h3>
-        <span class="row-label">Original Rollout</span>
-        <div class="video-grid one">
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/hexagon_original.jpg">
-              <source src="static/videos/hexagon_original.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Original setting</figcaption>
-          </figure>
-        </div>
-        <span class="row-label">Generalization (Object · Background · Lighting)</span>
-        <div class="video-grid">
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/hexagon_object.jpg">
-              <source src="static/videos/hexagon_object.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen object</figcaption>
-          </figure>
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/hexagon_background.jpg">
-              <source src="static/videos/hexagon_background.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen background</figcaption>
-          </figure>
-          <figure>
-            <video autoplay controls muted loop playsinline preload="metadata"
-                   poster="static/videos/hexagon_lighting.jpg">
-              <source src="static/videos/hexagon_lighting.mp4" type="video/mp4" />
-            </video>
-            <figcaption>Unseen lighting</figcaption>
-          </figure>
-        </div>
-      </div>
+      <figure class="framework-figure">
+        <img src="static/images/framework.png" alt="OmniCharacter++ model framework" />
+        <figcaption>
+          <strong>Framework of OmniCharacter++.</strong>
+          The model integrates text and speech features, learns preferred
+          emotional speech tokens, and retrieves role-contextual memory during
+          inference to produce character-consistent speech-language responses.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -561,38 +310,27 @@
     <div class="container narrow">
       <h2>Abstract</h2>
       <p>
-        Robotic foundation models require reasoning over complex visual scenes
-        to execute adaptive actions in dynamic environments. While recent
-        studies on latent-reasoning Vision-Language-Action (VLA) models have
-        demonstrated the capability to capture fine-grained physical dynamics,
-        they remain predominantly confined to static imitation learning, severely
-        limiting their adaptability and generalization.
+        Role-playing agents are increasingly expected to maintain consistent
+        personas, understand long-range dialogue context, and communicate with
+        natural speech in realistic multi-character settings. Existing
+        benchmarks, however, often focus on text-only or dyadic interaction,
+        leaving multimodal and open-world role consistency underexplored.
       </p>
       <p>
-        In this paper, we present <strong>LaST-R1</strong>, a novel
-        reinforcement learning (RL) post-training framework designed to
-        effectively harness "latent reasoning-before-acting" policies.
-        Specifically, we propose
-        <strong>Latent-to-Action Policy Optimization (LAPO)</strong>, a core RL
-        algorithm that jointly optimizes the latent reasoning process and action
-        generation. By explicitly embedding latent Chain-of-Thought (CoT)
-        reasoning directly within the RL optimization loop, LAPO stimulates
-        profound physical world modeling, which in turn drives robust execution
-        in interactive environments. Furthermore, an
-        <strong>adaptive latent CoT mechanism</strong> is introduced, allowing
-        the policy to dynamically modulate its reasoning horizon based on
-        diverse environment states.
+        We present <strong>OmniCharacter++</strong>, a comprehensive benchmark
+        for realistic role-playing agents. It contains over 10K diverse
+        character profiles, 118K+ multi-turn dialogues, and more than 1M
+        synthesized speech responses, covering dyadic and multi-party
+        conversations across goal-oriented real-world scenarios.
       </p>
       <p>
-        Experiments show that LaST-R1 achieves a near-perfect
-        <strong>99.9% average success rate on the LIBERO benchmark</strong> with
-        only one-shot supervised warm-up, significantly improving convergence
-        speed and performance over prior state-of-the-art (SOTA) methods. In
-        real-world deployments, LaST-R1 yields up to a
-        <strong>22.5% average improvement</strong> over a SOTA supervised
-        fine-tuning approach across four complex tasks, including both
-        single-arm and dual-arm settings. Finally, LaST-R1 demonstrates strong
-        generalization across simulated and real-world environments.
+        The benchmark evaluates agents from complementary perspectives,
+        including context understanding, generation ability, and human
+        perception of speech naturalness and role fidelity. Experiments reveal
+        that realistic role-playing remains challenging for both general
+        foundation models and specialized character agents, especially in
+        multi-party dialogue where context tracking and character-grounded
+        decision making are essential.
       </p>
     </div>
   </section>

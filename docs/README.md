@@ -7,16 +7,16 @@ Static project page for **OmniCharacter++: Towards Comprehensive Benchmark for R
 ## 页面内容
 
 ```
-Title + Authors + Buttons  ─►  Headline Results  ─►  Real-World  ─►  Abstract  ─►  BibTeX
+Title + Authors + Buttons  ─►  Headline Results  ─►  Model Framework  ─►  Abstract  ─►  BibTeX
 ```
 
 页面打开后直接呈现论文标题、作者和入口按钮，随后展示核心仿真实验、真机表格和已剪辑视频；措辞按论文正文和表格收紧，避免把分数扩展成更强的结论。
 
 | 段落 | 内容 |
 |------|------|
-| **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`OmniCharacter++` 用 Cornell 红高亮；Paper / Code / Models / Videos / BibTeX 可点击 |
+| **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`OmniCharacter++` 用 Cornell 红高亮；Paper / Code / Models / Framework / BibTeX 可点击 |
 | **Headline Results** | `intro.png` overview 大图 + 4 张数字卡（**10K+** characters / **118K+** dialogues / **1M+** speeches / **3941.76h** speech）+ Multi-party Context Understanding HTML 表格；其它实验提示见 paper |
-| **Real-World** | 论文 Table 2 真机成功率（`π0.5` Full-size SFT vs. LaST-R1 Few-shot SFT→RL）+ `video-edited` 里的 16 段真机视频 |
+| **Model Framework** | `framework.png` 展示 OmniCharacter++ speech-language collaborative model、emotion preference learning 和 role-contextual dialogue adaptation |
 | **Abstract** | 论文 abstract 原文 |
 | **BibTeX** | 引用块 + 一键复制按钮 |
 
@@ -39,6 +39,7 @@ Title + Authors + Buttons  ─►  Headline Results  ─►  Real-World  ─► 
     └── images/
         ├── teaser.png                  # 用：社交分享 OG image
         ├── intro.png                   # 用：OmniCharacter++ overview
+        ├── framework.png               # 用：model framework
         ├── data_dis.png                # 备用：topic / scenario distribution
         ├── len.png                     # 备用：dialogue length / audio duration distribution
         ├── dyadic_conv.png             # 备用：dyadic context understanding results
@@ -57,17 +58,9 @@ Title + Authors + Buttons  ─►  Headline Results  ─►  Real-World  ─► 
 | Test | Multi-Party | 10 | 16.72 | 334 | 15.20 |
 | **Total** | - | **10,377** | **12.92** | **118,536** | **3941.76** |
 
-### Real-World 真机（4 任务，SOTA SFT vs Few-shot SFT→RL，含 OOD 三列）
+### Model Framework
 
-每任务格式：`Original / Unseen-Object / -Background / -Lighting`
-
-| Task | π0.5 Full-size SFT | LaST-R1 Few-shot SFT→RL |
-|------|--------------------|--------------------------|
-| Insert hexagon block (single) | 65 / 35 / 55 / 40 | **45→90 / 75 / 85 / 80** |
-| Open bag zipper (dual) | 75 / 30 / 70 / 60 | **55→95 / 80 / 95 / 90** |
-| Wipe vase with sponge (dual) | 75 / 45 / 65 / 50 | **65→95 / 80 / 90 / 95** |
-| Open bottle cap (dual) | 70 / 50 / 55 / 55 | **45→95 / 95 / 80 / 85** |
-| **Original 列平均** | 71.25 | **52.5→93.75** |
+`static/images/framework.png` 展示 OmniCharacter++ 的 speech-language collaborative model，包括 role-aware speech decoder、emotion preference learning 和 role-contextual dialogue adaptation。
 
 ## 本地预览
 
@@ -82,34 +75,9 @@ python3 -m http.server 8000
 |------|---------|
 | `#bibtex` 内 `<pre><code>` 块 | Google Scholar BibTeX 条目 |
 
-## 真机视频
+## 模型框架图片
 
-页面现在使用 `ref/video-edited/` 里的 16 段已剪辑视频，HTML 里 hardcode 了部署文件名（**不要改名**）。
-
-| 任务 | 槽位 | 文件名 |
-|------|------|--------|
-| **Insert hexagon block** (single-arm) | Original | `static/videos/hexagon_original.mp4` |
-| | Unseen-Object | `static/videos/hexagon_object.mp4` |
-| | Unseen-Background | `static/videos/hexagon_background.mp4` |
-| | Unseen-Lighting | `static/videos/hexagon_lighting.mp4` |
-| **Open bag zipper** (dual-arm) | Original | `static/videos/zipper_original.mp4` |
-| | Unseen-Object | `static/videos/zipper_object.mp4` |
-| | Unseen-Background | `static/videos/zipper_background.mp4` |
-| | Unseen-Lighting | `static/videos/zipper_lighting.mp4` |
-| **Wipe vase with sponge** (dual-arm) | Original | `static/videos/vase_original.mp4` |
-| | Unseen-Object | `static/videos/vase_object.mp4` |
-| | Unseen-Background | `static/videos/vase_background.mp4` |
-| | Unseen-Lighting | `static/videos/vase_lighting.mp4` |
-| **Open bottle cap** (dual-arm) | Original | `static/videos/bottle_original.mp4` |
-| | Unseen-Object | `static/videos/bottle_object.mp4` |
-| | Unseen-Background | `static/videos/bottle_background.mp4` |
-| | Unseen-Lighting | `static/videos/bottle_lighting.mp4` |
-**视频建议规格**：H.264 / 720p+ / 16:9 / 单文件 < 15 MB。压缩命令（需 `ffmpeg`）：
-```bash
-ffmpeg -i in.mp4 -vcodec libx264 -crf 28 -preset slow -an out.mp4
-```
-
-GitHub 单文件 100 MB 上限，仓库总大小 1 GB 上限。
+页面使用 `static/images/framework.png`，来源于仓库根目录 `assets/framework.png`。
 
 ## 自定义
 
@@ -118,7 +86,7 @@ GitHub 单文件 100 MB 上限，仓库总大小 1 GB 上限。
 `static/css/style.css` 顶部 `:root`：
 
 ```css
---accent: #b11f3a;        /* Cornell 红 — 标题 LaST-R1 / LaST-R1 表格行 / callout 边线 */
+--accent: #b11f3a;        /* Cornell 红 — 标题 OmniCharacter++ / 高亮行 / callout 边线 */
 --accent-blue: #2f5f8f;   /* baseline 蓝 — 学习曲线注释 */
 ```
 

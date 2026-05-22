@@ -338,6 +338,12 @@ figure video {
 .overview-figure figcaption {
   max-width: 920px;
 }
+.framework-figure {
+  margin: 1.75rem auto 0;
+}
+.framework-figure img {
+  border: 1px solid var(--border);
+}
 .figure-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -494,144 +500,6 @@ figcaption {
   color: #b8b8b8;
   font-style: italic;
   font-weight: 400;
-}
-
-/* Real-world tables — light unified palette: Methods cell + task-pair headers
-   share a slightly darker tint (#f1f1f4); perturbation labels are a lighter
-   tint (#fafafb); data rows are white. The 2px black vertical bar between task
-   pairs mirrors the `|` from LaTeX `lcccc|cccc`. */
-.real-world-table {
-  margin-bottom: 1rem;
-  background: #fff;
-  border: 1px solid var(--border);
-}
-.real-world-table thead th {
-  background: #fafafb;
-  color: var(--fg);
-  font-weight: 600;
-  font-size: 0.88rem;
-  border-bottom: 1px solid var(--border);
-}
-.real-world-table .task-pair-head {
-  background: #f1f1f4;
-  color: var(--fg);
-  font-weight: 700;
-  font-size: 0.97rem;
-  letter-spacing: 0;
-  padding: 0.7rem 0.9rem;
-}
-.real-world-table thead th[rowspan] {
-  background: #f1f1f4;
-  color: var(--fg);
-  border-right: 2px solid #4a4a4a;     /* anchor the Methods column */
-  font-weight: 700;
-  width: 13rem;
-}
-/* The "|" separator from `lcccc|cccc` */
-.real-world-table .pair-left-border {
-  border-left: 2px solid #4a4a4a;
-}
-.real-world-table tbody td:first-child {
-  background: #fafafb;
-  font-weight: 500;
-  border-right: 2px solid #4a4a4a;     /* continues the Methods anchor down */
-  text-align: left;
-  padding-left: 0.9rem;
-}
-.real-world-table tr.ours-row {
-  background: var(--accent-soft);
-}
-.real-world-table tr.ours-row td:first-child {
-  background: #f9d8de;
-  color: var(--fg);
-}
-.real-world-table tr.ours-row:hover {
-  background: var(--accent-soft);
-}
-/* Relative drop annotations next to OOD numbers, e.g. "75 (-15%)" */
-.real-world-table .drop {
-  color: var(--fg-muted);
-  font-size: 0.78em;
-  font-weight: 400;
-  margin-left: 0.15em;
-}
-.real-world-table tr.ours-row .drop {
-  /* Slightly muted on the highlighted row too, but keep some weight */
-  color: #6b3a45;
-}
-.real-world-table .warmup {
-  color: var(--fg-muted);
-  font-weight: 500;
-  margin-right: 0.08em;
-}
-
-/* ========== Video grid (real-world rollouts) ========== */
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin: 0.4rem 0 0.5rem;
-}
-.video-grid.one {
-  /* Solo "Original Rollout" gets a wider single slot, capped */
-  grid-template-columns: minmax(0, 720px);
-  justify-content: center;
-}
-.video-grid figure {
-  margin: 0;
-}
-.video-grid video {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  background: #1f2937;
-  width: 100%;
-}
-.video-grid figcaption {
-  font-size: 0.88rem;
-  margin-top: 0.4rem;
-}
-.task-block {
-  margin: 2rem 0 0;
-  padding-top: 1.6rem;
-  border-top: 1px dashed var(--border);
-}
-.task-block:first-of-type {
-  border-top: none;
-  padding-top: 0;
-}
-.task-block h3 {
-  text-align: left;
-  font-size: 1.2rem;
-  margin: 0 0 0.4rem;
-}
-.task-block .task-tag {
-  display: inline-block;
-  margin-left: 0.6em;
-  padding: 0.15em 0.55em;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  vertical-align: 0.18em;
-}
-.task-block .task-meta {
-  font-size: 0.9rem;
-  color: var(--fg-muted);
-  margin: 0 0 0.6rem;
-}
-.task-block .row-label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--fg-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: 1.2rem 0 0.5rem;
 }
 
 /* ========== Highlight callout (used after learning curves) ========== */
