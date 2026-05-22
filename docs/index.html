@@ -310,27 +310,27 @@
     <div class="container narrow">
       <h2>Abstract</h2>
       <p>
-        Role-playing agents are increasingly expected to maintain consistent
-        personas, understand long-range dialogue context, and communicate with
-        natural speech in realistic multi-character settings. Existing
-        benchmarks, however, often focus on text-only or dyadic interaction,
-        leaving multimodal and open-world role consistency underexplored.
-      </p>
-      <p>
-        We present <strong>OmniCharacter++</strong>, a comprehensive benchmark
-        for realistic role-playing agents. It contains over 10K diverse
-        character profiles, 118K+ multi-turn dialogues, and more than 1M
-        synthesized speech responses, covering dyadic and multi-party
-        conversations across goal-oriented real-world scenarios.
-      </p>
-      <p>
-        The benchmark evaluates agents from complementary perspectives,
-        including context understanding, generation ability, and human
-        perception of speech naturalness and role fidelity. Experiments reveal
-        that realistic role-playing remains challenging for both general
-        foundation models and specialized character agents, especially in
-        multi-party dialogue where context tracking and character-grounded
-        decision making are essential.
+        Existing Role-Playing Agents (RPAs), powered by large language models,
+        are predominantly evaluated on static, text-only, dyadic conversations,
+        which inadequately reflect the complexity of realistic human
+        interactions involving multiple interlocutors and multi-modal
+        communication. To bridge this gap, we propose
+        <strong>OmniCharacter++</strong>, the first benchmark for evaluating
+        multi-character interactions in a joint text-speech context.
+        Specifically, OmniCharacter++ contributes: (1) a large-scale dataset
+        comprising 10,287 characters, 118,017 multi-turn dialogues, and over one
+        million audio responses across 8 open-world topics and 31 subfields,
+        covering diverse multi-modal role-playing scenarios; (2) a
+        comprehensive evaluation suite for dialogue understanding, generation
+        quality, and perceptual naturalness; and (3)
+        <strong>UniCharacter-7B</strong>, a unified text-speech model trained on
+        this dataset to manage complex multi-character dynamics, ensuring both
+        role-specific vocal fidelity and cross-participant semantic alignment.
+        Experimental results demonstrate that UniCharacter-7B achieves more
+        realistic and consistent role-playing responses in terms of both
+        attractiveness and consistency, while also highlighting that
+        OmniCharacter++ poses substantial challenges for state-of-the-art
+        models, charting a clear path for future research.
       </p>
     </div>
   </section>

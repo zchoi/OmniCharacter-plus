@@ -450,13 +450,16 @@ figcaption {
   background: var(--accent-soft);
 }
 .results-table tr.baseline-row {
-  background: #eef4e9;
+  background: #e8f5e9;
 }
 .results-table tr.baseline-row:hover {
-  background: #e3eddc;
+  background: #d8edda;
+}
+.results-table tr.baseline-row td {
+  font-weight: 600;
 }
 .results-table tr.group-row td {
-  background: #eef5fa;
+  background: #e5edf8;
   color: var(--fg);
   font-weight: 700;
   text-align: left;
