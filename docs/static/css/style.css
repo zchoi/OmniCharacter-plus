@@ -484,6 +484,24 @@ figcaption {
   white-space: normal;
   min-width: 180px;
 }
+.generalization-table {
+  min-width: 1500px;
+  font-size: 0.76rem;
+}
+.generalization-table thead th {
+  padding: 0.5rem 0.42rem;
+  font-size: 0.76rem;
+  vertical-align: middle;
+}
+.generalization-table tbody td {
+  padding: 0.34rem 0.42rem;
+  line-height: 1.22;
+  white-space: nowrap;
+}
+.generalization-table tbody td:first-child {
+  white-space: normal;
+  min-width: 170px;
+}
 .pm {
   color: var(--fg-muted);
   font-size: 0.78em;

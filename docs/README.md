@@ -7,7 +7,7 @@ Static project page for **OmniCharacter++: Towards Comprehensive Benchmark for R
 ## 页面内容
 
 ```
-Title + Authors + Buttons  ─►  Headline Results  ─►  Model Framework  ─►  Abstract  ─►  BibTeX
+Title + Authors + Buttons  ─►  Headline Results  ─►  Model Framework  ─►  CharacterEval Generalization  ─►  Abstract  ─►  BibTeX
 ```
 
 页面打开后直接呈现论文标题、作者和入口按钮，随后展示核心仿真实验、真机表格和已剪辑视频；措辞按论文正文和表格收紧，避免把分数扩展成更强的结论。
@@ -17,6 +17,7 @@ Title + Authors + Buttons  ─►  Headline Results  ─►  Model Framework  �
 | **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`OmniCharacter++` 用 Cornell 红高亮；Paper / Code / Models / Framework / BibTeX 可点击 |
 | **Headline Results** | `intro.png` overview 大图 + 4 张数字卡（**10K+** characters / **118K+** dialogues / **1M+** speeches / **3941.76h** speech）+ Multi-party Context Understanding HTML 表格；其它实验提示见 paper |
 | **Model Framework** | `framework.png` 展示 OmniCharacter++ speech-language collaborative model、emotion preference learning 和 role-contextual dialogue adaptation |
+| **CharacterEval Generalization** | CharacterEval 泛化性测试 HTML 表格，绿色标 OmniCharacter-7B，红色标 UniCharacter-7B |
 | **Abstract** | 论文 abstract 原文 |
 | **BibTeX** | 引用块 + 一键复制按钮 |
 
