@@ -105,6 +105,16 @@
   <!-- ===========================  2) HEADLINE RESULTS  =========================== -->
   <section class="section" id="results">
     <div class="container">
+      <figure class="overview-figure">
+        <img src="static/images/intro.png" alt="Overview of the OmniCharacter++ benchmark" />
+        <figcaption>
+          <strong>Overview of OmniCharacter++.</strong>
+          The benchmark moves beyond text-only and dyadic-only role-playing
+          evaluation by combining rich role profiles, multi-role dialogues,
+          vivid speech, goal-oriented scenarios, and multi-level evaluation.
+        </figcaption>
+      </figure>
+
       <h2>Headline Results</h2>
 
       <!-- Big-number callouts -->
@@ -129,165 +139,145 @@
         </div>
       </div>
 
-      <h3 class="subhead">OmniCharacter++ Benchmark — Dataset Scale</h3>
+      <h3 class="subhead">Context Understanding — Multi-Choice Evaluation</h3>
       <p class="caption-lead">
-        OmniCharacter++ covers large-scale role profiles, topic-driven
-        conversations, and expressive speech responses. It is designed to probe
-        role consistency, contextual understanding, multimodal communication,
-        and adaptive interaction in realistic open-world scenarios.
+        Performance comparison with state-of-the-art models on the
+        OmniCharacter++ test set of <strong>multi-party dialogue</strong>.
+        Models are evaluated with multi-choice QA and Circular Evaluation
+        Strategy for robust context understanding. Neg.: negotiation, Exc.:
+        exchange, Free.: free-talk, Exp.: expert-domain, Inst.:
+        instruction-giving, Per.: persuasion, Conf.: conflict-resolution,
+        Pla.: planning. The number in parentheses indicates the rank.
       </p>
-      <div class="table-wrap">
-        <table class="results-table">
+      <div class="table-wrap wide">
+        <table class="results-table context-table">
           <thead>
             <tr>
-              <th>Set</th>
-              <th>Dialogue Type</th>
-              <th>#Characters</th>
-              <th>Avg. Turns/Conv.</th>
-              <th>#Dialogues</th>
-              <th>#Speech Hours</th>
+              <th rowspan="2">Models</th>
+              <th rowspan="2">Avg.</th>
+              <th colspan="8">Multi-party Dialogue - Context Understanding (Multi-Choice)</th>
+            </tr>
+            <tr>
+              <th>Neg.</th>
+              <th>Exc.</th>
+              <th>Free.</th>
+              <th>Exp.</th>
+              <th>Inst.</th>
+              <th>Per.</th>
+              <th>Conf.</th>
+              <th>Pla.</th>
             </tr>
           </thead>
           <tbody>
+            <tr class="group-row"><td colspan="10">Human Evaluation</td></tr>
             <tr>
-              <td>Train</td>
-              <td>Dyadic</td>
-              <td>10,277</td>
-              <td>10.00</td>
-              <td>88,474</td>
-              <td>2867.94</td>
+              <td>Human</td><td>89.84 (-)</td><td>88.66<span class="pm">&plusmn;1.0</span></td><td>90.88<span class="pm">&plusmn;1.1</span></td><td>91.11<span class="pm">&plusmn;1.0</span></td><td>92.77<span class="pm">&plusmn;1.0</span></td><td>89.88<span class="pm">&plusmn;1.2</span></td><td>87.44<span class="pm">&plusmn;1.1</span></td><td>85.88<span class="pm">&plusmn;0.7</span></td><td>92.11<span class="pm">&plusmn;1.1</span></td>
+            </tr>
+            <tr class="group-row"><td colspan="10">Blind Evaluation <em>(w/o dialogue context)</em></td></tr>
+            <tr>
+              <td>Random Choice</td><td>23.14 (-)</td><td>24.02<span class="pm">&plusmn;1.1</span></td><td>23.88<span class="pm">&plusmn;1.2</span></td><td>18.44</td><td>27.77<span class="pm">&plusmn;1.0</span></td><td>22.66<span class="pm">&plusmn;1.4</span></td><td>20.11<span class="pm">&plusmn;1.2</span></td><td>24.66<span class="pm">&plusmn;1.0</span></td><td>23.55<span class="pm">&plusmn;1.3</span></td>
             </tr>
             <tr>
-              <td>Train</td>
-              <td>Multi-Party</td>
-              <td>10,277</td>
-              <td>15.05</td>
-              <td>29,543</td>
-              <td>1051.66</td>
+              <td>Random Choice (circular eval.)</td><td>0.00 (-)</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td>
             </tr>
             <tr>
-              <td>Test</td>
-              <td>Dyadic</td>
-              <td>10</td>
-              <td>9.89</td>
-              <td>185</td>
-              <td>6.96</td>
+              <td>GPT-3.5-Turbo</td><td>21.51 (-)</td><td>18.44<span class="pm">&plusmn;1.1</span></td><td>23.77<span class="pm">&plusmn;1.0</span></td><td>25.88<span class="pm">&plusmn;1.2</span></td><td>18.55<span class="pm">&plusmn;1.1</span></td><td>26.11<span class="pm">&plusmn;1.3</span></td><td>27.66<span class="pm">&plusmn;1.1</span></td><td>11.22<span class="pm">&plusmn;1.1</span></td><td>20.44<span class="pm">&plusmn;1.0</span></td>
             </tr>
             <tr>
-              <td>Test</td>
-              <td>Multi-Party</td>
-              <td>10</td>
-              <td>16.72</td>
-              <td>334</td>
-              <td>15.20</td>
+              <td>GPT-4o</td><td>24.68 (-)</td><td>21.11<span class="pm">&plusmn;0.9</span></td><td>30.02<span class="pm">&plusmn;1.2</span></td><td>30.44<span class="pm">&plusmn;0.7</span></td><td>16.22<span class="pm">&plusmn;1.1</span></td><td>24.88<span class="pm">&plusmn;1.0</span></td><td>41.77<span class="pm">&plusmn;1.0</span></td><td>17.11<span class="pm">&plusmn;1.0</span></td><td>15.88<span class="pm">&plusmn;1.2</span></td>
+            </tr>
+            <tr class="group-row"><td colspan="10">Proprietary Models</td></tr>
+            <tr>
+              <td>GPT-4.1</td><td>50.11 (1)</td><td>37.44<span class="pm">&plusmn;1.2</span></td><td>54.22<span class="pm">&plusmn;1.0</span></td><td>69.11<span class="pm">&plusmn;1.3</span></td><td>67.88<span class="pm">&plusmn;1.1</span></td><td>42.11<span class="pm">&plusmn;1.4</span></td><td>46.77<span class="pm">&plusmn;1.2</span></td><td>41.11<span class="pm">&plusmn;1.3</span></td><td>42.22<span class="pm">&plusmn;0.9</span></td>
+            </tr>
+            <tr>
+              <td>GPT-4.1-mini</td><td>40.55 (5)</td><td>29.44<span class="pm">&plusmn;1.2</span></td><td>38.11<span class="pm">&plusmn;1.2</span></td><td>57.44<span class="pm">&plusmn;1.1</span></td><td>50.88<span class="pm">&plusmn;1.2</span></td><td>40.11<span class="pm">&plusmn;1.1</span></td><td>34.11<span class="pm">&plusmn;1.1</span></td><td>34.22<span class="pm">&plusmn;1.0</span></td><td>40.11<span class="pm">&plusmn;1.2</span></td>
+            </tr>
+            <tr>
+              <td>GPT-4o</td><td>45.20 (4)</td><td>39.11<span class="pm">&plusmn;1.1</span></td><td>52.22<span class="pm">&plusmn;1.2</span></td><td>66.88<span class="pm">&plusmn;1.3</span></td><td>50.88<span class="pm">&plusmn;1.3</span></td><td>31.77<span class="pm">&plusmn;1.3</span></td><td>43.77<span class="pm">&plusmn;1.0</span></td><td>38.77<span class="pm">&plusmn;1.0</span></td><td>38.22<span class="pm">&plusmn;1.1</span></td>
+            </tr>
+            <tr>
+              <td>GPT-4o-mini</td><td>32.12 (7)</td><td>21.11<span class="pm">&plusmn;1.2</span></td><td>33.77<span class="pm">&plusmn;1.2</span></td><td>50.11<span class="pm">&plusmn;1.0</span></td><td>46.77<span class="pm">&plusmn;1.3</span></td><td>30.11<span class="pm">&plusmn;1.3</span></td><td>31.88<span class="pm">&plusmn;1.0</span></td><td>24.11<span class="pm">&plusmn;1.0</span></td><td>19.11<span class="pm">&plusmn;1.1</span></td>
+            </tr>
+            <tr>
+              <td>GPT-3.5-Turbo</td><td>22.90 (8)</td><td>23.88<span class="pm">&plusmn;1.2</span></td><td>18.44<span class="pm">&plusmn;1.0</span></td><td>27.11<span class="pm">&plusmn;0.9</span></td><td>22.88<span class="pm">&plusmn;0.9</span></td><td>20.11<span class="pm">&plusmn;1.0</span></td><td>23.88<span class="pm">&plusmn;1.3</span></td><td>24.11<span class="pm">&plusmn;1.2</span></td><td>22.77<span class="pm">&plusmn;1.0</span></td>
+            </tr>
+            <tr>
+              <td>DeepSeek-V3</td><td>39.94 (6)</td><td>33.77<span class="pm">&plusmn;0.9</span></td><td>43.88<span class="pm">&plusmn;1.3</span></td><td>57.44<span class="pm">&plusmn;0.6</span></td><td>46.77<span class="pm">&plusmn;1.1</span></td><td>38.77<span class="pm">&plusmn;1.0</span></td><td>36.22<span class="pm">&plusmn;0.9</span></td><td>28.44<span class="pm">&plusmn;1.2</span></td><td>34.22<span class="pm">&plusmn;1.1</span></td>
+            </tr>
+            <tr>
+              <td>Doubao-1.5-Pro-32K</td><td>47.66 (3)</td><td>37.44<span class="pm">&plusmn;0.4</span></td><td>47.88<span class="pm">&plusmn;1.1</span></td><td>50.11<span class="pm">&plusmn;1.0</span></td><td>52.88<span class="pm">&plusmn;1.2</span></td><td>56.11<span class="pm">&plusmn;1.1</span></td><td>46.22<span class="pm">&plusmn;1.3</span></td><td>43.88<span class="pm">&plusmn;1.2</span></td><td>46.77<span class="pm">&plusmn;0.9</span></td>
+            </tr>
+            <tr>
+              <td>Gemini-2.0-flash-preview</td><td>48.36 (2)</td><td>42.77<span class="pm">&plusmn;1.1</span></td><td>52.22<span class="pm">&plusmn;1.3</span></td><td>66.88<span class="pm">&plusmn;1.1</span></td><td>46.77<span class="pm">&plusmn;0.9</span></td><td>48.88<span class="pm">&plusmn;1.0</span></td><td>48.11<span class="pm">&plusmn;1.4</span></td><td>41.11<span class="pm">&plusmn;1.2</span></td><td>40.11<span class="pm">&plusmn;0.7</span></td>
+            </tr>
+            <tr class="group-row"><td colspan="10">Open-source Models</td></tr>
+            <tr>
+              <td>LLaMA-3.1-405B-Instruct</td><td>39.75 (2)</td><td>34.77<span class="pm">&plusmn;1.3</span></td><td>38.88<span class="pm">&plusmn;1.4</span></td><td>39.22<span class="pm">&plusmn;1.2</span></td><td>41.88<span class="pm">&plusmn;1.2</span></td><td>39.11<span class="pm">&plusmn;0.9</span></td><td>41.11<span class="pm">&plusmn;1.3</span></td><td>40.88<span class="pm">&plusmn;1.1</span></td><td>42.11<span class="pm">&plusmn;1.0</span></td>
+            </tr>
+            <tr>
+              <td>LLaMA-3.1-70B-Instruct</td><td>36.21 (5)</td><td>34.77<span class="pm">&plusmn;1.0</span></td><td>39.11<span class="pm">&plusmn;1.0</span></td><td>36.11<span class="pm">&plusmn;1.1</span></td><td>35.11<span class="pm">&plusmn;1.2</span></td><td>39.11<span class="pm">&plusmn;1.2</span></td><td>35.22<span class="pm">&plusmn;1.1</span></td><td>38.11<span class="pm">&plusmn;1.0</span></td><td>32.11<span class="pm">&plusmn;1.2</span></td>
+            </tr>
+            <tr>
+              <td>LLaMA-3.1-8B-Instruct</td><td>22.94 (7)</td><td>25.11<span class="pm">&plusmn;1.1</span></td><td>19.11<span class="pm">&plusmn;0.9</span></td><td>20.11<span class="pm">&plusmn;1.2</span></td><td>12.11<span class="pm">&plusmn;1.2</span></td><td>31.77<span class="pm">&plusmn;1.1</span></td><td>25.11<span class="pm">&plusmn;1.0</span></td><td>28.11<span class="pm">&plusmn;0.8</span></td><td>22.11<span class="pm">&plusmn;1.3</span></td>
+            </tr>
+            <tr>
+              <td>Qwen2.5-72B-Instruct</td><td>43.59 (1)</td><td>34.88<span class="pm">&plusmn;1.0</span></td><td>36.77<span class="pm">&plusmn;0.9</span></td><td>54.11<span class="pm">&plusmn;0.8</span></td><td>59.11<span class="pm">&plusmn;1.1</span></td><td>49.11<span class="pm">&plusmn;1.2</span></td><td>36.88<span class="pm">&plusmn;1.2</span></td><td>41.11<span class="pm">&plusmn;1.0</span></td><td>36.77<span class="pm">&plusmn;1.3</span></td>
+            </tr>
+            <tr>
+              <td>Qwen2.5-32B-Instruct</td><td>38.49 (3)</td><td>30.11<span class="pm">&plusmn;1.0</span></td><td>39.11<span class="pm">&plusmn;0.8</span></td><td>54.11<span class="pm">&plusmn;1.1</span></td><td>48.11<span class="pm">&plusmn;1.0</span></td><td>36.11<span class="pm">&plusmn;1.0</span></td><td>45.11<span class="pm">&plusmn;1.0</span></td><td>27.11<span class="pm">&plusmn;1.0</span></td><td>28.11<span class="pm">&plusmn;1.2</span></td>
+            </tr>
+            <tr>
+              <td>Qwen2.5-14B-Instruct</td><td>36.91 (4)</td><td>25.11<span class="pm">&plusmn;1.2</span></td><td>26.77<span class="pm">&plusmn;1.3</span></td><td>57.11<span class="pm">&plusmn;0.9</span></td><td>52.11<span class="pm">&plusmn;0.6</span></td><td>35.11<span class="pm">&plusmn;1.2</span></td><td>30.88<span class="pm">&plusmn;1.0</span></td><td>34.11<span class="pm">&plusmn;1.3</span></td><td>34.11<span class="pm">&plusmn;1.2</span></td>
+            </tr>
+            <tr>
+              <td>Qwen2.5-7B-Instruct</td><td>23.33 (6)</td><td>19.11<span class="pm">&plusmn;1.0</span></td><td>21.11<span class="pm">&plusmn;0.7</span></td><td>35.11<span class="pm">&plusmn;1.1</span></td><td>32.88<span class="pm">&plusmn;1.1</span></td><td>14.11<span class="pm">&plusmn;1.0</span></td><td>27.11<span class="pm">&plusmn;1.0</span></td><td>21.11<span class="pm">&plusmn;1.2</span></td><td>16.11<span class="pm">&plusmn;1.2</span></td>
+            </tr>
+            <tr class="group-row"><td colspan="10">Reasoning Models</td></tr>
+            <tr>
+              <td>o4-mini</td><td>38.91 (4)</td><td>34.88<span class="pm">&plusmn;1.1</span></td><td>40.11<span class="pm">&plusmn;1.1</span></td><td>49.11<span class="pm">&plusmn;1.2</span></td><td>48.11<span class="pm">&plusmn;1.0</span></td><td>36.11<span class="pm">&plusmn;1.1</span></td><td>39.11<span class="pm">&plusmn;0.8</span></td><td>27.11<span class="pm">&plusmn;1.0</span></td><td>36.77<span class="pm">&plusmn;1.0</span></td>
+            </tr>
+            <tr>
+              <td>o3-mini</td><td>41.15 (3)</td><td>37.44<span class="pm">&plusmn;1.2</span></td><td>44.11<span class="pm">&plusmn;1.1</span></td><td>54.11<span class="pm">&plusmn;1.2</span></td><td>48.11<span class="pm">&plusmn;1.4</span></td><td>36.11<span class="pm">&plusmn;1.2</span></td><td>39.11<span class="pm">&plusmn;1.2</span></td><td>30.11<span class="pm">&plusmn;1.2</span></td><td>40.11<span class="pm">&plusmn;1.2</span></td>
+            </tr>
+            <tr>
+              <td>o1-mini</td><td>35.82 (5)</td><td>30.11<span class="pm">&plusmn;1.0</span></td><td>36.77<span class="pm">&plusmn;1.0</span></td><td>42.11<span class="pm">&plusmn;1.1</span></td><td>48.11<span class="pm">&plusmn;1.1</span></td><td>36.11<span class="pm">&plusmn;1.2</span></td><td>37.11<span class="pm">&plusmn;1.0</span></td><td>29.11<span class="pm">&plusmn;1.2</span></td><td>27.11<span class="pm">&plusmn;1.4</span></td>
+            </tr>
+            <tr>
+              <td>Gemini-2.5-flash</td><td>42.33 (2)</td><td>34.77<span class="pm">&plusmn;1.0</span></td><td>34.77<span class="pm">&plusmn;0.7</span></td><td>43.11<span class="pm">&plusmn;1.2</span></td><td>49.11<span class="pm">&plusmn;1.1</span></td><td>37.11<span class="pm">&plusmn;1.2</span></td><td>45.11<span class="pm">&plusmn;1.2</span></td><td>46.77<span class="pm">&plusmn;1.3</span></td><td>47.88<span class="pm">&plusmn;0.8</span></td>
+            </tr>
+            <tr>
+              <td>Gemini-2.5-pro-preview-05-06</td><td>45.62 (1)</td><td>40.11<span class="pm">&plusmn;0.8</span></td><td>40.11<span class="pm">&plusmn;1.1</span></td><td>52.11<span class="pm">&plusmn;1.0</span></td><td>54.11<span class="pm">&plusmn;1.2</span></td><td>41.11<span class="pm">&plusmn;1.1</span></td><td>45.88<span class="pm">&plusmn;1.3</span></td><td>46.77<span class="pm">&plusmn;1.1</span></td><td>44.77<span class="pm">&plusmn;1.0</span></td>
+            </tr>
+            <tr class="group-row"><td colspan="10">Role-playing Models</td></tr>
+            <tr>
+              <td>CharacterGLM</td><td>36.47 (6)</td><td>34.77<span class="pm">&plusmn;1.0</span></td><td>35.11<span class="pm">&plusmn;1.1</span></td><td>60.88<span class="pm">&plusmn;1.1</span></td><td>42.77<span class="pm">&plusmn;0.8</span></td><td>20.11<span class="pm">&plusmn;0.9</span></td><td>39.11<span class="pm">&plusmn;0.9</span></td><td>32.88<span class="pm">&plusmn;1.2</span></td><td>26.11<span class="pm">&plusmn;1.1</span></td>
+            </tr>
+            <tr>
+              <td>Baichuan-NPC</td><td>36.23 (7)</td><td>29.88<span class="pm">&plusmn;1.0</span></td><td>38.77<span class="pm">&plusmn;1.1</span></td><td>49.11<span class="pm">&plusmn;1.1</span></td><td>42.77<span class="pm">&plusmn;1.0</span></td><td>31.77<span class="pm">&plusmn;1.1</span></td><td>30.88<span class="pm">&plusmn;1.3</span></td><td>32.88<span class="pm">&plusmn;1.1</span></td><td>33.77<span class="pm">&plusmn;0.9</span></td>
+            </tr>
+            <tr>
+              <td>Minimax-abab6-chat</td><td>42.26 (4)</td><td>41.77<span class="pm">&plusmn;1.0</span></td><td>39.88<span class="pm">&plusmn;1.2</span></td><td>40.88<span class="pm">&plusmn;1.0</span></td><td>64.88<span class="pm">&plusmn;1.0</span></td><td>41.77<span class="pm">&plusmn;1.2</span></td><td>36.88<span class="pm">&plusmn;1.1</span></td><td>36.11<span class="pm">&plusmn;1.1</span></td><td>35.88<span class="pm">&plusmn;0.6</span></td>
+            </tr>
+            <tr>
+              <td>Xingchen-Plus</td><td>41.62 (5)</td><td>42.88<span class="pm">&plusmn;1.2</span></td><td>41.88<span class="pm">&plusmn;1.1</span></td><td>64.77<span class="pm">&plusmn;1.0</span></td><td>41.77<span class="pm">&plusmn;1.1</span></td><td>36.77<span class="pm">&plusmn;1.2</span></td><td>36.11<span class="pm">&plusmn;1.3</span></td><td>32.88<span class="pm">&plusmn;0.9</span></td><td>35.88<span class="pm">&plusmn;0.9</span></td>
+            </tr>
+            <tr>
+              <td>Qwen2.5-7B-Instruct <em>w/ our data</em></td><td>42.58 (3)</td><td>39.11<span class="pm">&plusmn;1.1</span></td><td>45.88<span class="pm">&plusmn;1.0</span></td><td>68.11<span class="pm">&plusmn;1.0</span></td><td>36.77<span class="pm">&plusmn;1.4</span></td><td>43.77<span class="pm">&plusmn;0.9</span></td><td>36.77<span class="pm">&plusmn;1.2</span></td><td>36.11<span class="pm">&plusmn;1.4</span></td><td>34.11<span class="pm">&plusmn;1.3</span></td>
+            </tr>
+            <tr class="baseline-row">
+              <td>OmniCharacter-7B (Ours)</td><td>43.31 (2)</td><td>34.77<span class="pm">&plusmn;1.1</span></td><td>48.88<span class="pm">&plusmn;1.1</span></td><td>66.88<span class="pm">&plusmn;1.3</span></td><td>34.77<span class="pm">&plusmn;1.0</span></td><td>35.88<span class="pm">&plusmn;1.3</span></td><td>36.77<span class="pm">&plusmn;1.2</span></td><td>46.77<span class="pm">&plusmn;1.2</span></td><td>41.77<span class="pm">&plusmn;0.9</span></td>
             </tr>
             <tr class="ours-row">
-              <td><strong>Total</strong></td>
-              <td>-</td>
-              <td><strong>10,377</strong></td>
-              <td><strong>12.92</strong></td>
-              <td><strong>118,536</strong></td>
-              <td><strong>3941.76</strong></td>
+              <td><strong>UniCharacter-7B (Ours)</strong></td><td><strong>47.80 (1)</strong></td><td><strong>43.88</strong><span class="pm">&plusmn;1.1</span></td><td><strong>46.77</strong><span class="pm">&plusmn;0.7</span></td><td><strong>70.11</strong><span class="pm">&plusmn;1.1</span></td><td><strong>41.77</strong><span class="pm">&plusmn;1.2</span></td><td><strong>44.77</strong><span class="pm">&plusmn;1.3</span></td><td><strong>44.11</strong><span class="pm">&plusmn;1.0</span></td><td><strong>50.88</strong><span class="pm">&plusmn;1.3</span></td><td><strong>40.11</strong><span class="pm">&plusmn;1.2</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-
-      <figure>
-        <img src="static/images/intro.png" alt="Overview of the OmniCharacter++ benchmark" />
-        <figcaption>
-          <strong>Overview of OmniCharacter++.</strong>
-          The benchmark moves beyond text-only and dyadic-only role-playing
-          evaluation by combining rich role profiles, multi-role dialogues,
-          vivid speech, goal-oriented scenarios, and multi-level evaluation.
-        </figcaption>
-      </figure>
-
-      <div class="figure-grid">
-        <figure>
-          <img src="static/images/data_dis.png" alt="OmniCharacter++ topic and scenario distribution" />
-          <figcaption>
-            <strong>Topic and scenario coverage.</strong>
-            OmniCharacter++ spans daily life, planning, negotiation,
-            instruction-giving, free-talk, expert domains, conflict resolution,
-            and other realistic role-playing settings.
-          </figcaption>
-        </figure>
-        <figure>
-          <img src="static/images/len.png" alt="OmniCharacter++ dialogue length and audio duration distribution" />
-          <figcaption>
-            <strong>Dialogue and speech distribution.</strong>
-            The dataset includes multi-turn conversations and speech responses
-            with varied audio durations for evaluating text-speech interaction.
-          </figcaption>
-        </figure>
-      </div>
-
-      <h3 class="subhead">Context Understanding — Multi-Choice Evaluation</h3>
       <p class="caption-note">
-        Models are evaluated on dyadic and multi-party dialogue scenarios using
-        role-related multi-choice QA with circular evaluation. OmniCharacter-7B
-        is highlighted as the role-playing model trained on OmniCharacter++
-        data, and the tables compare it against proprietary, open-source,
-        reasoning, and role-playing baselines.
+        For dyadic dialogue, generation ability, human perception, and the full
+        experimental breakdown, please see the paper.
       </p>
-
-      <figure>
-        <img src="static/images/dyadic_conv.png" alt="Dyadic dialogue context understanding results" />
-        <figcaption>
-          <strong>Dyadic dialogue context understanding.</strong>
-          OmniCharacter-7B reaches the best average score among role-playing
-          models and ranks competitively across negotiation, exchange,
-          free-talk, expert-domain, instruction-giving, persuasion, conflict
-          resolution, and planning categories.
-        </figcaption>
-      </figure>
-
-      <div class="callout-grid">
-        <div class="callout">
-          <div class="callout-title">
-            <i class="fas fa-users"></i><span>Dyadic + Multi-Party</span>
-          </div>
-          <p>
-            The benchmark evaluates both one-to-one role-playing and
-            multi-character conversations. This stresses context tracking,
-            speaker intent, goal progress, and relationship consistency across
-            longer, more realistic interactions.
-          </p>
-        </div>
-        <div class="callout">
-          <div class="callout-title">
-            <i class="fas fa-volume-high"></i><span>Text-Speech Interaction</span>
-          </div>
-          <p>
-            OmniCharacter++ pairs role profiles and dialogues with synthesized
-            speech responses, enabling evaluation beyond text-only behavior:
-            fluency, consistency, emotional expression, clarity,
-            appropriateness, and immersion.
-          </p>
-        </div>
-        <div class="callout">
-          <div class="callout-title">
-            <i class="fas fa-bullseye"></i><span>Goal-Oriented Roles</span>
-          </div>
-          <p>
-            Scenarios are built around concrete topics and goals, so models
-            must balance persona consistency with task progress, dialogue
-            coherence, and realistic role-specific decisions.
-          </p>
-        </div>
-      </div>
-
-      <figure>
-        <img src="static/images/multi_conv.png" alt="Multi-party dialogue context understanding results" />
-        <figcaption>
-          <strong>Multi-party dialogue context understanding.</strong>
-          The multi-party split increases the burden on role tracking and
-          context aggregation, exposing performance gaps between general
-          chat models and role-playing agents trained for character-grounded
-          interaction.
-        </figcaption>
-      </figure>
     </div>
   </section>
 

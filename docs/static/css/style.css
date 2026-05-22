@@ -332,6 +332,12 @@ figure video {
   border-radius: var(--radius);
   background: #fff;
 }
+.overview-figure {
+  margin: 0 0 3rem;
+}
+.overview-figure figcaption {
+  max-width: 920px;
+}
 .figure-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -386,6 +392,9 @@ figcaption {
   margin: 0.5rem auto 1rem;
   max-width: 1000px;
 }
+.table-wrap.wide {
+  max-width: 100%;
+}
 .table-wrap.small {
   max-width: 800px;
 }
@@ -433,6 +442,43 @@ figcaption {
 }
 .results-table tr.ours-row:hover {
   background: var(--accent-soft);
+}
+.results-table tr.baseline-row {
+  background: #eef4e9;
+}
+.results-table tr.baseline-row:hover {
+  background: #e3eddc;
+}
+.results-table tr.group-row td {
+  background: #eef5fa;
+  color: var(--fg);
+  font-weight: 700;
+  text-align: left;
+  border-top: 2px solid #2a2a2a;
+  border-bottom: 1px solid var(--border);
+}
+.context-table {
+  min-width: 1180px;
+  font-size: 0.78rem;
+}
+.context-table thead th {
+  padding: 0.55rem 0.5rem;
+  font-size: 0.78rem;
+  vertical-align: middle;
+}
+.context-table tbody td {
+  padding: 0.38rem 0.5rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.context-table tbody td:first-child {
+  white-space: normal;
+  min-width: 180px;
+}
+.pm {
+  color: var(--fg-muted);
+  font-size: 0.78em;
+  margin-left: 0.08em;
 }
 .results-table tr.task-header td {
   background: #2a2a2a;

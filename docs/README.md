@@ -7,7 +7,7 @@ Static project page for **OmniCharacter++: Towards Comprehensive Benchmark for R
 ## 页面内容
 
 ```
-Title + Authors + Buttons  ─►  Headline Results (Sim)  ─►  Real-World  ─►  Abstract  ─►  BibTeX
+Title + Authors + Buttons  ─►  Headline Results  ─►  Real-World  ─►  Abstract  ─►  BibTeX
 ```
 
 页面打开后直接呈现论文标题、作者和入口按钮，随后展示核心仿真实验、真机表格和已剪辑视频；措辞按论文正文和表格收紧，避免把分数扩展成更强的结论。
@@ -15,7 +15,7 @@ Title + Authors + Buttons  ─►  Headline Results (Sim)  ─►  Real-World  �
 | 段落 | 内容 |
 |------|------|
 | **Title + Authors + Buttons** | 论文标题、网站展示作者和机构；`OmniCharacter++` 用 Cornell 红高亮；Paper / Code / Models / Videos / BibTeX 可点击 |
-| **Headline Results** | 4 张数字卡（**10K+** characters / **118K+** dialogues / **1M+** speeches / **3941.76h** speech）+ OmniCharacter++ 统计表 + `intro.png` / `data_dis.png` / `len.png` / `dyadic_conv.png` / `multi_conv.png` 结果图 + 三联 callout |
+| **Headline Results** | `intro.png` overview 大图 + 4 张数字卡（**10K+** characters / **118K+** dialogues / **1M+** speeches / **3941.76h** speech）+ Multi-party Context Understanding HTML 表格；其它实验提示见 paper |
 | **Real-World** | 论文 Table 2 真机成功率（`π0.5` Full-size SFT vs. LaST-R1 Few-shot SFT→RL）+ `video-edited` 里的 16 段真机视频 |
 | **Abstract** | 论文 abstract 原文 |
 | **BibTeX** | 引用块 + 一键复制按钮 |
@@ -39,10 +39,10 @@ Title + Authors + Buttons  ─►  Headline Results (Sim)  ─►  Real-World  �
     └── images/
         ├── teaser.png                  # 用：社交分享 OG image
         ├── intro.png                   # 用：OmniCharacter++ overview
-        ├── data_dis.png                # 用：topic / scenario distribution
-        ├── len.png                     # 用：dialogue length / audio duration distribution
-        ├── dyadic_conv.png             # 用：dyadic context understanding results
-        └── multi_conv.png              # 用：multi-party context understanding results
+        ├── data_dis.png                # 备用：topic / scenario distribution
+        ├── len.png                     # 备用：dialogue length / audio duration distribution
+        ├── dyadic_conv.png             # 备用：dyadic context understanding results
+        └── multi_conv.png              # 备用：multi-party context understanding screenshot
 ```
 
 ## 论文实验数据
