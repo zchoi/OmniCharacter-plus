@@ -179,6 +179,12 @@ em {
   display: inline-block;
   margin: 0 0.6em;
 }
+.notes .acceptance-note {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--accent);
+  font-weight: 700;
+}
 .notes {
   font-size: 0.85rem;
   margin-bottom: 1.6rem;
