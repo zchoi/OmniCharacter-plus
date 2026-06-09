@@ -183,6 +183,7 @@ em {
   display: block;
   margin-top: 0.45rem;
   color: var(--accent);
+  font-size: 1.15rem;
   font-weight: 700;
 }
 .notes {
